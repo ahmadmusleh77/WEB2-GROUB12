@@ -1,0 +1,47 @@
+
+.welcome-container{
+  background-image: url("/assets/welcome.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+.welcome-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1;
+  text-align: center;
+}
+.text{
+  font-size: 200px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 4px 4px 8px rgba(0,0,0,0.6);
+}
+.welcome-box{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 30px;
+  border: 4px solid orangered;
+  background-color: rgba(0,0,0,0.6);
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 3;
+  width: 80%;
+}
+.spacer{
+  height: 150vh;
+}
+.text-paragraph{
+  color: #ff5a19;
+  font-weight: bold;
+  font-size: 50px;
+}

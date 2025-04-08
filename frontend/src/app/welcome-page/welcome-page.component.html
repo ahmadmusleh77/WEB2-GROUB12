@@ -1,0 +1,20 @@
+<div class="welcome-container" (window:scroll)="onScroll()">
+  <app-header *ngIf="!scrolled"></app-header>
+  <div *ngIf="!scrolled" class="welcome-content">
+    <h1 class="text">WELCOME</h1>
+  </div>
+  <div *ngIf="scrolled" class="welcome-box">
+    <p class="text-bg text-paragraph">Welcome To Technician Hiring Platform</p>
+    <p>Application that connects artisans and technicians<br>
+      with jpb owners who need their services</p>
+  </div>
+</div>
+
+
+<div class="page-content">
+
+
+</div>
+
+
+
