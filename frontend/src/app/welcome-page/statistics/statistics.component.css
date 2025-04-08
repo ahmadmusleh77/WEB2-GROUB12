@@ -1,0 +1,38 @@
+.card-container ,.card-container-2{
+  width: 296px;
+  height: 301px;
+  background-color: #ff5a19;
+
+}
+.card-container-2{
+  background-color: #bcc1ca;
+}
+
+.text-card ,.text-card-2{
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+
+}
+.text-card-2{
+  color: black;
+}
+
+.number-card , .number-card-2{
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+}
+.number-card-2{
+  color: black;
+}
+@media screen and (max-width: 760px){
+  .card-container-2,.card-container{
+    width: 107px;
+    height: 107px;
+  }
+  .text-card,.text-card-2 ,.number-card-2,.number-card{
+    font-size: 10px;
+    font-weight: normal;
+  }
+}
