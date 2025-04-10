@@ -1,6 +1,4 @@
-.navbar-custom {
-  background-color: transparent !important;
-}
+
 .nav-link.btn-orange {
   background-color: #ff5a19;
   color: white !important;
@@ -9,6 +7,8 @@
   padding: 6px 15px;
   transition: 0.3s;
 }
+
+
 .nav-link.btn-orange:hover {
   background-color: #ec8b69;
   color: white;
