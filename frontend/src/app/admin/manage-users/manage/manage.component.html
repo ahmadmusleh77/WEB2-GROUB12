@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 class="text-center mb-4">Manage Users</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered align-middle text-center">
+      <thead class="table">
+      <tr>
+        <th class="ene">User Name</th>
+        <th class="ene">Profession</th>
+        <th class="ene">Email</th>
+        <th class="ene">Select</th>
+        <th class="ene">Accept</th>
+        <th class="ene">Reject</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let offer of manage; let i = index">
+        <td>{{ offer.UserName }}</td>
+        <td>{{ offer.Profession }}</td>
+        <td class="text-break">{{ offer.Email }}</td>
+        <td>{{ offer.Select }}</td>
+
+
+        <td>
+          <button
+            *ngIf="offer.Select === 'Yes'"
+            class="btn btn-success btn-sm"
+            (click)="acceptOffer(i)">
+            Accept
+          </button>
+        </td>
+
+
+        <td>
+          <button
+            *ngIf="offer.Reject === 'No'"
+            class="btn btn-danger btn-sm"
+            (click)="deleteOffer(i)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

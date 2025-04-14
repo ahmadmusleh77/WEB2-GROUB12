@@ -1,0 +1,158 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f8f8;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.job-title {
+  color: #ff4800;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body p {
+  margin: 8px 0;
+}
+
+.card-footer {
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.card-footer button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #ff4800;
+  border: 2px solid #ff4800;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-footer button:hover {
+  background-color: #ff4800;
+  color: white;
+}
+
+.request-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  align-items: end;
+  margin-top: 20px;
+}
+
+.custom-img {
+  max-width: 45%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.submit-btn-container {
+  grid-column: span 2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 2px solid #ff4800;
+  background-color: transparent;
+  color: #ff4800;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #ff4800;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: 500;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #ff4800;
+  border: none;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #ff4800 !important;
+  border-color: #ff4800 !important;
+}
+
+@media (max-width: 576px) {
+  .custom-img {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .request-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-btn-container {
+    grid-column: span 1;
+  }
+
+  .card-footer button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.owner-link {
+  text-decoration: none;
+  color: #555555;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.owner-link:hover {
+  color: #ff4800;
+}
