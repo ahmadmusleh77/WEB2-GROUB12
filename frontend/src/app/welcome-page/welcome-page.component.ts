@@ -3,6 +3,7 @@ import {HeaderComponent} from './header/header.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {WhoWeAreComponent} from './who-we-are/who-we-are.component';
 import {FooterWelcomeComponent} from './footer-welcome/footer-welcome.component';
+import {CardWelcomeComponent} from './card-welcome/card-welcome.component';
 
 
 
@@ -13,6 +14,7 @@ import {FooterWelcomeComponent} from './footer-welcome/footer-welcome.component'
     WhoWeAreComponent,
     StatisticsComponent,
     FooterWelcomeComponent,
+    CardWelcomeComponent,
 
   ],
   templateUrl: './welcome-page.component.html',

@@ -26,10 +26,11 @@
 }
 .welcome-box{
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  padding: 100px;
+  padding: 130px;
+
   border: 4px solid orangered;
   background-color: rgba(0,0,0,0.6);
   text-align: center;
@@ -80,4 +81,21 @@
 }
 @media screen and (max-width: 600px){
   .welcome-box{font-size: 15px;padding: 30px}
+}
+
+
+.text-services{
+  font-weight: bold;
+  font-size: 3vh;
+  text-align: center;
+
+}
+.title-services{
+  font-weight: bold;
+  font-size: 4vh;
+  color: #ff5a19;
+  text-align: center;
+}
+.group{
+  text-align: center;
 }
