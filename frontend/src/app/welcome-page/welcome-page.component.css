@@ -1,0 +1,101 @@
+
+.welcome-container{
+  background-image: url("/assets/welcome.png");
+  background-size: cover;
+  background-position: center;
+  height: 125vh;
+  position: relative;
+  z-index: 1;
+  color: white;
+  overflow: hidden;
+}
+.welcome-content{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  text-align: center;
+}
+.text{
+
+  font-size: 13vw;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 4px 4px 8px rgba(0,0,0,0.6);
+}
+.welcome-box{
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 130px;
+
+  border: 4px solid orangered;
+  background-color: rgba(0,0,0,0.6);
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1;
+  width: 80%;
+  display: none;
+}
+.spacer{
+  height: 150vh;
+}
+.text-paragraph{
+  color: #ff5a19;
+  font-weight: bold;
+  font-size: 50px;
+  display: none;
+}
+
+.page-content{
+  gap: 2rem;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 2;
+}
+.weAre{
+  margin-top: 18%;
+}
+
+
+.welcome-container:hover .text{
+  display: none;
+}
+.welcome-container:hover .welcome-box, .text-paragraph{
+  display: block;
+}
+
+
+@media screen and (max-width:960px) {
+  .text-paragraph{font-size: 20px;}
+  .welcome-box{font-size:20px;padding: 45px; }
+  .page-content{top: 104%}
+  .welcome-container{height: 110vh}
+}
+@media screen and (max-width: 600px){
+  .welcome-box{font-size: 15px;padding: 30px}
+}
+
+
+.text-services{
+  font-weight: bold;
+  font-size: 3vh;
+  text-align: center;
+
+}
+.title-services{
+  font-weight: bold;
+  font-size: 4vh;
+  color: #ff5a19;
+  text-align: center;
+}
+.group{
+  text-align: center;
+}
