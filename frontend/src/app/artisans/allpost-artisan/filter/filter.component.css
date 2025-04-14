@@ -1,0 +1,32 @@
+.filter-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff4800;
+}
+
+.filter-container .form-label {
+  font-weight: bold;
+}
+
+.filter-container .form-control {
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+}
+.clear-btn {
+  margin-top: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #ff4800;
+  color: #fff;
+  border-color: #ff4800;
+}
