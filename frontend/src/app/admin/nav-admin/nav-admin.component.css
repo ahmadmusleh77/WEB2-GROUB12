@@ -1,0 +1,12 @@
+.nav-link:hover {
+  color: #ff4800 !important;
+
+}
+.navbar {
+  background-color: #dee1e6 !important;
+  margin-bottom: 100px;
+}
+
+.bi-bell-fill{
+  color: #ff4800;
+}
