@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="center-container">
+  <div class="container">
+    <h1>Access Account</h1>
+    <p>Your gateway to innovation.</p>
+
+
+    <div class="input-group">
+      <i class="icon-envelope"></i>
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        (input)="updateEmail($event)"
+      />
+    </div>
+
+
+    <div class="input-group">
+      <i class="icon-lock"></i>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        (input)="updatePassword($event)"
+      />
+    </div>
+
+
+    <p class="forgot-password-link">
+      <a href="#" style="color: #ff5722;">Forgot your password?</a>
+    </p>
+
+
+    <button class="login-button" (click)="login()" [disabled]="email.trim() === '' || password.trim() === ''">
+      Log In
+    </button>
+
+
+    <p class="signup-link">
+      Need to create an account?
+      <a href="#" style="color: #ff5722;">Sign Up</a>
+    </p>
+  </div>
+</div>
+

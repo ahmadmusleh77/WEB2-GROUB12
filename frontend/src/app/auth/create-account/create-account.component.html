@@ -1,0 +1,104 @@
+<div class="center-container">
+  <div class="container">
+    <h1>Create Account</h1>
+    <p>Join us and manage your profile!</p>
+
+
+    <div class="input-group">
+      <i class="icon-user"></i>
+      <input
+        type="text"
+        name="username"
+        placeholder="Choose a username"
+        [(ngModel)]="username"
+      />
+    </div>
+
+
+    <div class="input-group">
+      <i class="icon-envelope"></i>
+      <input
+        type="email"
+        name="email"
+        placeholder=" XXXX@gmail.com"
+        [(ngModel)]="email"
+      />
+    </div>
+
+
+    <div class="input-group">
+      <i class="icon-lock"></i>
+      <input
+        type="password"
+        name="password"
+        placeholder="Create a password"
+        [(ngModel)]="password"
+      />
+      <i class="icon-eye" (click)="togglePasswordVisibility('password')"></i>
+    </div>
+
+
+
+
+    <div class="input-group">
+      <i class="icon-lock"></i>
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Re-enter your password"
+        [(ngModel)]="confirmPassword"
+      />
+      <i class="icon-eye" (click)="togglePasswordVisibility('confirmPassword')"></i>
+    </div>
+
+
+    <div class="terms-checkbox">
+      <input
+        type="checkbox"
+        name="termsAccepted"
+        [(ngModel)]="termsAccepted"
+        id="termsCheckbox"
+      />
+      <label for="termsCheckbox">I agree with Terms & Conditions</label>
+    </div>
+
+    <button
+      class="register-button"
+      (click)="register()"
+      [disabled]="
+    username.trim() === '' ||
+    email.trim() === '' ||
+    password.trim() === '' ||
+    confirmPassword.trim() === '' ||
+    !termsAccepted ||
+    password !== confirmPassword
+  "
+    >
+      Register
+    </button>
+    <!-- رابط تسجيل الدخول -->
+    <p class="login-link">
+      Already registered?
+      <a href="#" style="color: #ff5722;">Log In</a>
+    </p>
+
+
+    <button class="social-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+
+      </svg>
+
+      continue with google
+    </button>
+    <button class="social-button">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+
+      </svg>
+
+      continue with facebook
+    </button>
+  </div>
+</div>
+
+
+

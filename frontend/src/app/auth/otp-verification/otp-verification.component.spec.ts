@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JobOwnersComponent } from './job-owners.component';
+import { OtpVerificationComponent } from './otp-verification.component';
 
-describe('JobOwnersComponent', () => {
-  let component: JobOwnersComponent;
-  let fixture: ComponentFixture<JobOwnersComponent>;
+describe('OtpVerificationComponent', () => {
+  let component: OtpVerificationComponent;
+  let fixture: ComponentFixture<OtpVerificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JobOwnersComponent]
+      imports: [OtpVerificationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(JobOwnersComponent);
+    fixture = TestBed.createComponent(OtpVerificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
