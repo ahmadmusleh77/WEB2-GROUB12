@@ -1,0 +1,19 @@
+<app-nav-admin></app-nav-admin>
+<app-titel-admin></app-titel-admin>
+
+
+
+
+
+<div class="row">
+  <div class="col-3 col-sm-3 col-md-4 col-lg-4 col-xl-4" *ngFor="let card of cards">
+    <app-card-report
+      [count]="card.count"
+      [title]="card.title"
+      [icon]="card.icon">
+    </app-card-report>
+  </div>
+</div>
+
+<app-tabel-report [data]="userData"></app-tabel-report>
+<app-tabel-report2 [information]="userData2" ></app-tabel-report2>
