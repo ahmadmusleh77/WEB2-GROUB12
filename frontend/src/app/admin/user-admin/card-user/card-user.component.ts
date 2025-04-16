@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-card-user',
   templateUrl: './card-user.component.html',
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   styleUrls: ['./card-user.component.css']
 })

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {CardReportComponent} from "./card-report/card-report.component";
-import {NavAdminComponent} from "../nav-admin/nav-admin.component";
 import {NgForOf} from "@angular/common";
 import {TabelReport2Component} from "./tabel-report2/tabel-report2.component";
 import {TabelReportComponent} from "./tabel-report/tabel-report.component";
@@ -10,7 +9,6 @@ import {TitelAdminComponent} from "./titel-admin/titel-admin.component";
   selector: 'app-home-admin',
     imports: [
         CardReportComponent,
-        NavAdminComponent,
         NgForOf,
         TabelReport2Component,
         TabelReportComponent,
