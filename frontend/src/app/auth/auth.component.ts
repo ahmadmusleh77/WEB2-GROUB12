@@ -4,6 +4,7 @@ import {NewPasswordComponent} from './new-password/new-password.component';
 import {OtpVerificationComponent} from './otp-verification/otp-verification.component';
 import {CreateAccountComponent} from './create-account/create-account.component';
 import {LoginComponent} from './login/login.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -13,7 +14,8 @@ import {LoginComponent} from './login/login.component';
     NewPasswordComponent,
     OtpVerificationComponent,
     CreateAccountComponent,
-    LoginComponent
+    LoginComponent,
+    RouterOutlet
   ],
   styleUrl: './auth.component.css'
 })
