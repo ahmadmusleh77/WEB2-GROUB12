@@ -1,14 +1,14 @@
+
+
+
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-admin',
-  imports: [
-    RouterLink
-  ],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './nav-admin.component.html',
-  styleUrl: './nav-admin.component.css'
+  styleUrls: ['./nav-admin.component.css']
 })
-export class NavAdminComponent {
-
-}
+export class NavAdminComponent {}

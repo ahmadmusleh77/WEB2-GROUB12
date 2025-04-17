@@ -1,58 +1,44 @@
 
 
-<nav class="navbar navbar-expand-lg ">
 
+<nav class="navbar navbar-expand-lg">
   <div class="container d-flex justify-content-between align-items-center">
-
     <div>
-      <img src="../assets/logo22.png" alt="Logo" style="height: 40px;" />
+      <img src="../assets/logo22.png" alt="Logo" style="height: 40px;">
     </div>
-
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
       <ul class="navbar-nav d-flex flex-row gap-4">
         <li class="nav-item">
-          <a class="nav-link active fw-bold  border-2 " routerLink="/admin-dashboard/">Home</a>
+          <a class="nav-link active fw-bold border-2" routerLink="/admin-dashboard/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active fw-bold  border-2" routerLink="/admin-dashboard/all-post-admin">All Post</a>
+          <a class="nav-link active fw-bold border-2" routerLink="/admin-dashboard/all-post-admin">All Post</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active fw-bold  border-2" routerLink="/admin-dashboard/manage-user"> Manage users</a>
+          <a class="nav-link active fw-bold border-2" routerLink="/admin-dashboard/manage-user">Manage users</a>
         </li>
-
       </ul>
     </div>
-
-
     <div class="d-flex align-items-center gap-3">
-
-
-
-
-      <div class="dropdown  " >
-
-        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-bell m-lg-2 text-dark " ></i>
-
+      <div class="dropdown">
+        <a class="d-flex align-items-center text-decoration-none dropdown-toggle"
+           href="#"
+           data-bs-toggle="dropdown"
+           aria-expanded="false">
+          <i class="fa-solid fa-bell m-lg-2 text-dark"></i>
           <span class="me-2 text-muted">saleh owes</span>
-
           <img src="../assets/pro.jpg" height="40" width="40" class="rounded-circle" alt="User">
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" routerLink="/admin-dashboard/profile">Profile</a></li>
+          <li><a class="dropdown-item" routerLink="/admin-dashboard/settings">Settings</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item text-danger" routerLink="/">Logout</a></li>
         </ul>
       </div>
     </div>
-
   </div>
 </nav>
-
-
