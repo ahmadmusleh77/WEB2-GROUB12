@@ -21,8 +21,23 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { ManageBidsComponent } from './admin/manage-bids/manage-bids.component';
 import { AccountProfileComponent } from './admin/profile-admin/account-admin/account-admin.component';
 import { SettingsComponent } from './admin/profile-admin/settings-admin/settings-admin.component';
+import {OfferJobownerComponent} from './job-owner/offer-jobowner/offer-jobowner.component';
+import {EditPostComponent} from './job-owner/edit-post/edit-post.component';
+import {CreatePostComponent} from './job-owner/create-post/create-post.component';
+import {ManageBidsJobownerComponent} from './job-owner/manage-bids-jobowner/manage-bids-jobowner.component';
+import {JobOwnerComponent} from './job-owner/job-owner.component';
+import {NavbarJobownerComponent} from './job-owner/navbar-jobowner/navbar-jobowner.component';
 
 export const routes: Routes = [
+
+  {path: 'offer-jobowner',component: OfferJobownerComponent},
+  {path: 'edit-post',component: EditPostComponent},
+  {path: 'create-post',component: CreatePostComponent},
+  {path: 'manage-bids-jobowner',component: ManageBidsJobownerComponent},
+  {path: 'job-owner',component: JobOwnerComponent},
+  {path: 'navbar-jobowner',component: NavbarJobownerComponent},
+
+
   {
     path: '',
     component: AuthComponent,
@@ -35,7 +50,7 @@ export const routes: Routes = [
       { path: 'verification', component: OtpVerificationComponent },
       { path: 'newpassword', component: NewPasswordComponent }
     ],
-    
+
   },
   {
     path: 'artisans-dashboard',

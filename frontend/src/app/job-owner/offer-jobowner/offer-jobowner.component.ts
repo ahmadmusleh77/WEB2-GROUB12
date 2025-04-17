@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import {ArtisanNavbarComponent} from '../../artisans/navbar-artisan/artisan-navbar.component';
+import {FooterComponent} from '../../artisans/footer-artisan/footer.component';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 interface Offer {
   id: number;
@@ -9,11 +11,16 @@ interface Offer {
   status: 'pending' | 'completed';
   rating: number;
 }
-
 @Component({
   selector: 'app-offer-jobowner',
   templateUrl: './offer-jobowner.component.html',
-  imports: [NgClass, NgForOf, NgIf],
+  imports: [
+    ArtisanNavbarComponent,
+    FooterComponent,
+    NgForOf,
+    NgIf,
+    NgClass
+  ],
   styleUrls: ['./offer-jobowner.component.css'],
   standalone: true
 })

@@ -1,0 +1,33 @@
+<div class="submitted-offers-container">
+  <div class="subtitle">Manage Bids</div>
+  <p class="main-description">You can accept or reject the submitted bids below</p>
+</div>
+
+<div class="table-container">
+  <table class="custom-table">
+    <thead>
+    <tr>
+      <th class="non">User Name</th>
+      <th class="non">Bids</th>
+      <th class="non">Start Date</th>
+      <th class="non">Accept</th>
+      <th class="non">Reject</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bid of bids">
+      <td>{{ bid.username }}</td>
+      <td>
+        <span class="badge bids">{{ bid.amount }}</span>
+      </td>
+      <td>{{ bid.startDate }}</td>
+      <td>
+        <span class="badge bg-success" style="cursor: pointer;" (click)="acceptBid(bid)">Accept</span>
+      </td>
+      <td>
+        <button class="btn-danger" (click)="rejectBid(bid)">Reject</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
