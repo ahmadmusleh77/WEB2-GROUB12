@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +8,14 @@ import {RouterLink} from '@angular/router';
   styleUrls: ['./login.component.css'],
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    FormsModule
   ]
 })
 export class LoginComponent {
   email = '';
   password = '';
+  userType: string='';
 
 
   login() {

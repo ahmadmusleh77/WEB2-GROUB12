@@ -17,6 +17,7 @@ export class CreateAccountComponent {
   password = '';
   confirmPassword = '';
   termsAccepted = false;
+  userType: string='';
 
 
   register() {
