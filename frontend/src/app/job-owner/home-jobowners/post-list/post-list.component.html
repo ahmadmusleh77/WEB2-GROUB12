@@ -1,0 +1,27 @@
+<h2 class="posts-title">All my posts</h2>
+
+<div class="posts-grid">
+  @for (post of posts; let i = $index; track post) {
+    <div class="post-card">
+      <img [src]="post.image" alt="Workspace" class="post-image" />
+
+      <div class="post-body">
+        <div class="post-left">
+          <h3 class="title">{{ post.title }}</h3>
+          <p class="meta"><strong>Deadline:</strong> {{ post.deadline }}</p>
+          <p class="meta"><strong>Budget:</strong> {{ post.budget }}</p>
+          <p class="meta"><strong>Location:</strong> {{ post.location }}</p>
+          <p class="description">
+            <strong>Description:</strong> {{ post.description }}
+          </p>
+        </div>
+
+        <div class="post-buttons">
+          <a [routerLink]="['/manage-bids-jobowner']" class="btn btn-outline-blue">Manage Bids</a>
+          <a [routerLink]="['/edit-post']" class="btn btn-outline-green">Edit</a>
+          <button class="btn btn-outline-red" (click)="deletePost(i)">Delete</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

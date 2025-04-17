@@ -1,0 +1,29 @@
+<div class="form-container">
+  <h2 class="page-title">Create Job <strong>Posting</strong></h2>
+
+  <form>
+    <label>Job Title</label>
+    <input type="text" name="title" placeholder="Job Title" required />
+
+    <label>Job Description</label>
+    <textarea name="description" placeholder="Job Description" required></textarea>
+
+    <label>Budget</label>
+    <input type="text" name="budget" placeholder="Budget" required />
+
+    <label>Location</label>
+    <input type="text" name="location" placeholder="Location" required />
+
+    <label>Deadline</label>
+    <input type="date" name="deadline" required />
+
+    <label>Add Image</label>
+    <div class="file-upload-wrapper">
+      <input type="file" id="file-upload" />
+      <label for="file-upload" class="file-upload-label">📎 Attach files +</label>
+    </div>
+
+    <button type="submit" class="submit-btn" [routerLink]="['/offer-jobowner']">Submit</button>
+
+  </form>
+</div>

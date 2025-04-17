@@ -1,0 +1,126 @@
+.navbar,
+.container-fluid,
+.navbar-nav,
+.d-flex.align-items-center,
+.header-icons {
+  transition: all 0.3s ease;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 10px;
+}
+
+.d-flex.align-items-center {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .navbar-nav {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 10px 0;
+  }
+
+  .d-flex.align-items-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar-nav {
+    display: block;
+    text-align: left;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 15px 0;
+  }
+
+  .d-flex.align-items-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .header-icons > :nth-child(-n+2) {
+    flex-basis: auto;
+  }
+
+  .header-icons > :nth-child(3) {
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .link-hover-underline {
+    display: inline-block;
+  }
+}
+
+.link-hover-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #fd7e14;
+  transition: width 0.3s;
+}
+
+.link-hover-underline:hover::after,
+.link-hover-underline.active::after {
+  width: 100%;
+}
+
+.header-icon {
+  color: #000;
+}
+
+.fa-facebook-messenger {
+  color: #000 !important;
+}
+
+.dropdown-menu {
+  top: 100% !important;
+  left: auto;
+  right: 0;
+  margin-top: 5px;
+  min-width: 150px;
+  padding: 8px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu .dropdown-item {
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #e0e0e0;
+  color: #000;
+}
+
+.dropdown-toggle::after {
+  margin-top: 20px;
+  color: #000;
+  font-size: 1rem;
+}
+
+.nav-link.active {
+  color: #000 !important;
+}
