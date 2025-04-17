@@ -31,8 +31,6 @@ export const routes: Routes = [
       {path: 'verification',component: OtpVerificationComponent},
       {path:'newpassword',component: NewPasswordComponent}
 
-
-
     ],
   },
   {
@@ -52,14 +50,12 @@ export const routes: Routes = [
 path:'admin-dashboard',
     component:AdminComponent,
     children:[
-
       {path: '', redirectTo: 'home-admin', pathMatch: 'full'},
       {path:'home-admin',component:HomeAdminComponent},
       {path:'all-post-admin',component: UserAdminComponent},
       {path:'manage-user',component: ManageUsersComponent},
       {path:'manage-bids', component: ManageBidsComponent}
     ]
-
   },
 
 ];
