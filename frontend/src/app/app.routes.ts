@@ -34,7 +34,8 @@ export const routes: Routes = [
       { path: 'forgotpassword', component: ForgotPasswordComponent },
       { path: 'verification', component: OtpVerificationComponent },
       { path: 'newpassword', component: NewPasswordComponent }
-    ]
+    ],
+    
   },
   {
     path: 'artisans-dashboard',
@@ -50,6 +51,7 @@ export const routes: Routes = [
     ]
   },
   {
+
     path: 'admin-dashboard',
     component: AdminComponent,
     children: [
@@ -62,4 +64,5 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsComponent }
     ]
   }
+
 ];

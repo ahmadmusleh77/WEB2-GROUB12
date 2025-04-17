@@ -1,11 +1,9 @@
-
 .center-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-
 
 .container {
   max-width: 400px;
@@ -16,36 +14,35 @@
   text-align: center;
 }
 
-
 h1 {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 
 p {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-
 .input-group {
   position: relative;
   margin-bottom: 20px;
 }
+
 
 .icon-lock {
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  color: #ccc;
+  color:  #ff5722;
 }
+
 
 input[type="text"] {
   width: 100%;
   padding: 10px 15px 10px 35px;
-  border: 1px solid #ddd;
+  border: 1px solid  #ff5722;
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
@@ -63,6 +60,15 @@ input[type="text"] {
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-code i {
+  margin-right: 5px;
 }
 
 .send-code:hover {

@@ -5,7 +5,7 @@
 
 
     <div class="input-group">
-      <i class="icon-lock"></i>
+      <i class="fa-solid fa-lock icon-lock"></i>
       <input
         type="text"
         placeholder="Enter verification code"
@@ -14,9 +14,8 @@
     </div>
 
 
-    <button class="send-code" (click)="sendCode()">
-      <a routerLink="/newpassword"> Send Code</a>
-
+    <button routerLink="/newpassword" class="send-code" (click)="sendCode()">
+      <i class="fa-solid fa-check"></i> Send Code
     </button>
   </div>
 </div>
