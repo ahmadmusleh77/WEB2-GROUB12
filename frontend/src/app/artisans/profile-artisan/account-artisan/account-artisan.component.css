@@ -1,0 +1,185 @@
+:host {
+    --primary-color: #FF6B35;
+    --secondary-color: #333333;
+    --light-gray-color: #f8f9fa;
+    --medium-gray-color: #e9ecef;
+    --border-color: #dee2e6;
+    --text-color: #495057;
+    --text-color-light: #6c757d;
+    --white-color: #ffffff;
+    --star-color: #ffc107;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .profile-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: var(--white-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    font-family: var(--font-family);
+    color: var(--text-color);
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    background-color: var(--light-gray-color);
+    border-bottom: 1px solid var(--border-color);
+    gap: 25px;
+  }
+  
+  .profile-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--white-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-info {
+    flex-grow: 1;
+  }
+  
+  .profile-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--secondary-color);
+  }
+  
+  .profile-info p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: var(--text-color-light);
+  }
+  
+  .profile-info .location {
+    font-style: normal;
+  }
+  
+  .rating-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+  }
+  
+  .star-rating {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    color: var(--star-color);
+    margin-right: 8px;
+  }
+  
+  .star-rating i {
+      margin-right: 2px;
+  }
+  
+  .rating-container span {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color-light);
+  }
+  
+  .chat-btn-container {
+    margin-left: auto;
+    align-self: flex-start;
+  }
+  
+  .chat-btn {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .chat-btn img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+  }
+  
+  .chat-btn:hover {
+    background-color: #e05a2e;
+    transform: scale(1.05);
+  }
+  
+  
+  .profile-details {
+    padding: 30px;
+  }
+  
+  .profile-section {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--medium-gray-color);
+  }
+  
+  .profile-section:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  
+  .profile-details h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+  }
+  
+  .profile-details p,
+  .profile-details li {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: var(--text-color);
+  }
+  
+  .profile-details p strong {
+      color: var(--secondary-color);
+      margin-right: 5px;
+  }
+  
+  
+  .skills-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .skills-list li {
+    background-color: var(--medium-gray-color);
+    color: var(--secondary-color);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer; /* <--- التعديل هنا */
+  }
+  
+  .skills-list li:hover {
+     background-color: var(--primary-color);
+     color: var(--white-color);
+  }
+  
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
