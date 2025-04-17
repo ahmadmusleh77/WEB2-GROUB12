@@ -20,12 +20,12 @@
     <label>Add Image</label>
     <div class="file-row">
       <input type="file" />
-      <img src="assets/sample-img.png" class="preview-img" alt="Preview" />
+      <img src="/assets/post.svg" class="preview-img" alt="Preview" />
     </div>
 
     <div class="form-buttons">
-      <button type="submit" class="btn-save">Save</button>
-      <button type="button" class="btn-cancel" [routerLink]="['/offer-jobowner']">Cancel</button>
+      <button type="submit" class="btn-save" routerLink="/job-owner-dashboard/home-job-owner">Save</button>
+      <button type="button" class="btn-cancel" routerLink="/job-owner-dashboard/home-job-owner">Cancel</button>
     </div>
   </form>
 </div>
