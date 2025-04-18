@@ -30,6 +30,7 @@ import {ManageBidsJobownerComponent} from './job-owner/manage-bids-jobowner/mana
 import {ChatJobOwnerComponent} from './job-owner/chat-job-owner/chat-job-owner.component';
 
 
+
 export const routes: Routes = [
 
   {
@@ -56,7 +57,7 @@ export const routes: Routes = [
       { path: 'all-posts', component: AllPostComponent },
       { path: 'offers', component: OfferArtisanComponent },
       { path: 'profile', component: ArtisanAccountProfileComponent },
-      { path: 'settings', component: ArtisanSettingsComponent }
+      { path: 'settings', component: ArtisanSettingsComponent },
     ]
   },
   {
