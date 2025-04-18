@@ -3,9 +3,11 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-navbar-artisan',
+
   imports: [
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+
   ],
   templateUrl: './artisan-navbar.component.html',
   styleUrl: './artisan-navbar.component.css'

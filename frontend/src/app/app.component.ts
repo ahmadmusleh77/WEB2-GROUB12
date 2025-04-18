@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {AuthComponent} from './auth/auth.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 @Component({
   selector: 'app-root',

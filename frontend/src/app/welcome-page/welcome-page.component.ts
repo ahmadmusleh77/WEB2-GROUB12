@@ -5,8 +5,6 @@ import {WhoWeAreComponent} from './who-we-are/who-we-are.component';
 import {FooterWelcomeComponent} from './footer-welcome/footer-welcome.component';
 import {CardWelcomeComponent} from './card-welcome/card-welcome.component';
 
-
-
 @Component({
   selector: 'app-welcome-page',
   imports: [
