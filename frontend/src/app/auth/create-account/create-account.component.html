@@ -1,3 +1,4 @@
+
 <div class="center-container">
   <div class="container">
     <h1>Create Account</h1>
@@ -5,7 +6,17 @@
 
 
     <div class="input-group">
-      <i class="icon-user"></i>
+      <label for="userType">Choose the account type</label>
+      <select name="userType" id="userType" [(ngModel)]="userType">
+        <option value="worker">job owner</option>
+        <option value="owner">job search</option>
+        <option value="owner">Admin</option>
+      </select>
+    </div>
+
+
+    <div class="input-group">
+      <i class="fa-solid fa-user"></i>
       <input
         type="text"
         name="username"
@@ -16,39 +27,37 @@
 
 
     <div class="input-group">
-      <i class="icon-envelope"></i>
+      <i class="fa-regular fa-envelope"></i>
       <input
         type="email"
         name="email"
-        placeholder=" XXXX@gmail.com"
+        placeholder="XXXX@gmail.com"
         [(ngModel)]="email"
       />
     </div>
 
 
     <div class="input-group">
-      <i class="icon-lock"></i>
+      <i class="fa-solid fa-lock"></i>
       <input
         type="password"
         name="password"
         placeholder="Create a password"
         [(ngModel)]="password"
       />
-      <i class="icon-eye" (click)="togglePasswordVisibility('password')"></i>
+      <i class="fa-solid fa-eye" (click)="togglePasswordVisibility('password')"></i>
     </div>
 
 
-
-
     <div class="input-group">
-      <i class="icon-lock"></i>
+      <i class="fa-solid fa-lock"></i>
       <input
         type="password"
         name="confirmPassword"
         placeholder="Re-enter your password"
         [(ngModel)]="confirmPassword"
       />
-      <i class="icon-eye" (click)="togglePasswordVisibility('confirmPassword')"></i>
+      <i class="fa-solid fa-eye" (click)="togglePasswordVisibility('confirmPassword')"></i>
     </div>
 
 
@@ -62,43 +71,48 @@
       <label for="termsCheckbox">I agree with Terms & Conditions</label>
     </div>
 
+
     <button
       class="register-button"
       (click)="register()"
       [disabled]="
-    username.trim() === '' ||
-    email.trim() === '' ||
-    password.trim() === '' ||
-    confirmPassword.trim() === '' ||
-    !termsAccepted ||
-    password !== confirmPassword
-  "
+        username.trim() === '' ||
+        email.trim() === '' ||
+        password.trim() === '' ||
+        confirmPassword.trim() === '' ||
+        !termsAccepted ||
+        password !== confirmPassword
+      "
     >
       Register
     </button>
-    <!-- رابط تسجيل الدخول -->
+
+
     <p class="login-link">
       Already registered?
-      <a href="#" style="color: #ff5722;">Log In</a>
+      <a routerLink="/login" style="color: #ff5722;">Log In</a>
     </p>
 
 
+
     <button class="social-button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 
       </svg>
-
-      continue with google
+      <i class="fa-brands fa-google" style="color: #ff5722; margin-right: 10px;"></i>
+      Continue with Google
     </button>
+
+
     <button class="social-button">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 
       </svg>
-
-      continue with facebook
+      <i class="fa-brands fa-facebook" style="color: #ff5722; margin-right: 10px;"></i>
+      Continue with Facebook
     </button>
+
   </div>
 </div>
-
 
 

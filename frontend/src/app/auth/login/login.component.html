@@ -5,7 +5,16 @@
 
 
     <div class="input-group">
-      <i class="icon-envelope"></i>
+      <label for="userType">Choose the account type</label>
+      <select name="userType" id="userType" [(ngModel)]="userType">
+        <option value="worker">job owner</option>
+        <option value="owner">job sercher</option>
+        <option value="owner">Admin</option>
+      </select>
+
+
+      <div class="input-group">
+        <i class="fa-regular fa-envelope icon-email"></i>
       <input
         type="email"
         name="email"
@@ -13,10 +22,12 @@
         (input)="updateEmail($event)"
       />
     </div>
+    </div>
+
 
 
     <div class="input-group">
-      <i class="icon-lock"></i>
+      <i class="fa-solid fa-lock icon-password"></i>
       <input
         type="password"
         name="password"
@@ -27,7 +38,7 @@
 
 
     <p class="forgot-password-link">
-      <a href="#" style="color: #ff5722;">Forgot your password?</a>
+      <a routerLink="/forget-password" style="color: #ff5722;">Forgot your password?</a>
     </p>
 
 
@@ -38,8 +49,15 @@
 
     <p class="signup-link">
       Need to create an account?
-      <a href="#" style="color: #ff5722;">Sign Up</a>
+      <a routerLink="/createaccount" style="color: #ff5722;">Sign Up</a>
     </p>
   </div>
 </div>
+
+<ul>
+  <li><a routerLink="/admin-dashboard">Admin</a></li>
+  <li><a routerLink="/artisans-dashboard">Job search</a></li>
+  <li><a routerLink="">Job-owner</a></li>
+</ul>
+
 

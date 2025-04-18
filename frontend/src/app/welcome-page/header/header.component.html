@@ -12,18 +12,18 @@
     <div class=" navbar-collapse justify-content-end" id="navbarSupportedContent">
          <ul class="navbar-nav mb-2 mb-lg-0 d-flex ">
            <li class="nav-item">
-            <a class="nav-link btn-orange" href="#">Log in</a>
+            <a class="nav-link btn-orange" routerLink="/login">Log in</a>
            </li>
            <li class="nav-item">
-            <a class="nav-link btn-orange" href="#">Sign up</a>
+            <a class="nav-link btn-orange" routerLink="/create-account">Sign up</a>
            </li>
            <li class="nav-item dropdown">
              <a class="nav-link dropdown-toggle btn-orange" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               User type
              </a>
              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Job search</a></li>
-                <li><a class="dropdown-item" href="#">Job owner</a></li>
+                <li><a class="dropdown-item" routerLink="/artisans-dashboard">Job search</a></li>
+                <li><a class="dropdown-item" routerLink="/job-owner-dashboard">Job owner</a></li>
              </ul>
            </li>
          </ul>

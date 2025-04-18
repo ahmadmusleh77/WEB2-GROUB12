@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
 
-import {ManageUsersComponent} from './manage-users/manage-users.component';
-import {ManageComponent} from './manage-users/manage/manage.component';
-import {ManageBidsComponent} from './manage-bids/manage-bids.component';
-import {UserAdminComponent} from './user-admin/user-admin.component';
-import {HomeAdminComponent} from './home-admin/home-admin.component';
+import {RouterOutlet} from '@angular/router';
+import {FooterAdminComponent} from './footer-admin/footer-admin.component';
+import {NavAdminComponent} from './nav-admin/nav-admin.component';
 
 
 @Component({
   selector: 'app-admin',
   imports: [
 
-    ManageUsersComponent,
-
-    ManageBidsComponent,
-    UserAdminComponent,
-    HomeAdminComponent,
+    RouterOutlet,
+    FooterAdminComponent,
+    NavAdminComponent,
 
 
   ],

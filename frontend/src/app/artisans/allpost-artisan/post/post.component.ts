@@ -21,16 +21,16 @@ import {RouterLink} from '@angular/router';
 export class PostComponent {
   conversionItems = [
     {
-    title: 'Carpentry',
-    location: 'Ramallah, Palestine',
-    description: 'Four working days in a carpentry shop from 8 am to 4 pm',
-    date: '17/5/2025',
-    price: '149$',
-    image: '/assets/post.svg',
-    additionalImage: '/assets/post1.svg',
+      title: 'Carpentry',
+      location: 'Ramallah, Palestine',
+      description: 'Four working days in a carpentry shop from 8 am to 4 pm',
+      date: '17/5/2025',
+      price: '149$',
+      image: '/assets/post.svg',
+      additionalImage: '/assets/post1.svg',
       ownerName: 'Ahmad Musleh',
       ownerId: 1
-  },
+    },
     {
       title: 'Blacksmithing',
       location: 'Nablus, Palestine',
@@ -240,7 +240,7 @@ export class PostComponent {
       ownerName: 'Ahmad Musleh',
       ownerId: 20
     }
-    ];
+  ];
   filteredItems = this.conversionItems;
   itemsPerPage = 8;
   currentPage = 1;

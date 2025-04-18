@@ -1,4 +1,3 @@
-
 .center-container {
   display: flex;
   justify-content: center;
@@ -6,6 +5,10 @@
   height: 100vh;
 }
 
+#userType{
+  margin-left: 12px;
+  margin-bottom: 10px;
+}
 
 .container {
   max-width: 400px;
@@ -16,55 +19,58 @@
   text-align: center;
 }
 
-
 h1 {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 
 p {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-
 .input-group {
   position: relative;
   margin-bottom: 15px;
+
 }
 
-.icon-envelope, .icon-lock {
+
+.icon-email {
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  color: #ccc;
+  color: #ff5722;
 }
 
-input[type="email"], input[type="password"] {
+
+.icon-password {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ff5722;
+}
+
+
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 10px 15px 10px 35px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff5722;
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
 }
 
-
-.forgot-password-link {
-  text-align: right;
-  margin-bottom: 10px;
-}
-
-/* زر الإدخال */
 .login-button {
   display: block;
   width: 100%;
   padding: 10px;
   background-color: #ff5722;
   color: #fff;
-  border: none;
+  border:#ff5722;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -73,8 +79,15 @@ input[type="email"], input[type="password"] {
 }
 
 .login-button:disabled {
-  background-color: #ccc;
+  background-color: #ff5722;
   cursor: not-allowed;
+}
+
+
+.forgot-password-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 

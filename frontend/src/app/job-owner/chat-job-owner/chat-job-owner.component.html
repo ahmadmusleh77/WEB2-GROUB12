@@ -1,0 +1,36 @@
+<div class="chat-container">
+  <div class="chat-sidebar">
+    <h3>Chats</h3>
+    <div *ngFor="let contact of contacts"
+         class="chat-contact"
+         (click)="selectChat(contact)"
+         [ngClass]="{ 'selected': selectedChat?.id === contact.id }">
+      <img [src]="contact.avatar" alt="Avatar" />
+      <div>
+        <h5>{{ contact.name }}</h5>
+        <small *ngIf="contact.messages.length">{{ contact.messages.at(-1)?.text }}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-window" *ngIf="selectedChat">
+    <div class="chat-header">
+      <img [src]="selectedChat.avatar" alt="Avatar" />
+      <h4>{{ selectedChat.name }}</h4>
+    </div>
+
+    <div class="chat-messages">
+      <div *ngFor="let message of selectedChat.messages" class="chat-message-wrapper" [ngClass]="{'right': message.sender === 'user', 'left': message.sender === 'other'}">
+        <div class="chat-bubble">
+          <p>{{ message.text }}</p>
+          <small>{{ message.time }}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" [(ngModel)]="messageInput" placeholder="Type your message..." (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

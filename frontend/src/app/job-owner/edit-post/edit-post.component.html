@@ -1,0 +1,31 @@
+<div class="edit-container">
+  <h2 class="edit-title">Edit Job <strong>Posting</strong></h2>
+
+  <form class="edit-form">
+    <label>Job Title</label>
+    <input type="text" placeholder="Job Title" />
+
+    <label>Job Description</label>
+    <textarea rows="5" placeholder="Job Description"></textarea>
+
+    <label>Budget</label>
+    <input type="text" placeholder="Budget" />
+
+    <label>Location</label>
+    <input type="text" placeholder="Location" />
+
+    <label>Deadline</label>
+    <input type="date" placeholder="Deadline" />
+
+    <label>Add Image</label>
+    <div class="file-row">
+      <input type="file" />
+      <img src="/assets/post.svg" class="preview-img" alt="Preview" />
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn-save" routerLink="/job-owner-dashboard/home-job-owner">Save</button>
+      <button type="button" class="btn-cancel" routerLink="/job-owner-dashboard/home-job-owner">Cancel</button>
+    </div>
+  </form>
+</div>
