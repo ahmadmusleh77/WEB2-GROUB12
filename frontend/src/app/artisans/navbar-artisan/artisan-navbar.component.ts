@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
+import {NotificationsComponent} from '../../notifications/notifications.component';
 
 @Component({
   selector: 'app-navbar-artisan',
@@ -7,6 +8,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
   imports: [
     RouterLink,
     RouterLinkActive,
+    NotificationsComponent,
 
   ],
   templateUrl: './artisan-navbar.component.html',
