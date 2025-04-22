@@ -5,11 +5,6 @@
   height: 100vh;
 }
 
-#userType{
-  margin-left: 12px;
-  margin-bottom: 10px;
-}
-
 .container {
   max-width: 400px;
   padding: 20px;
@@ -36,22 +31,11 @@ p {
 }
 
 
-.icon-email {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #ff5722;
+#userType{
+  margin-left: 12px;
+  margin-bottom: 10px;
 }
 
-
-.icon-password {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: #ff5722;
-}
 
 
 input[type="email"],
@@ -95,4 +79,32 @@ input[type="password"] {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
+}
+
+
+
+
+.account-type-group,
+.email-input-group,
+.password-input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+
+.email-input-group .icon-email {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ff5722;
+}
+
+
+.password-input-group .icon-password {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ff5722;
 }
