@@ -1,0 +1,27 @@
+<div class="header">
+  <app-header></app-header>
+</div>
+
+<app-filter-category
+  (filterEvent)="onFilter($event)">
+</app-filter-category>
+
+<div class="all-cards">
+  <div class="container mb-4 mt-0 py-4">
+    <div class="row g-4">
+      <div *ngFor="let card of filteredCards" class="col-md-4 mb-4">
+    <app-card-category
+      [image]="card.image"
+      [title]="card.title"
+      [location]="card.location"
+      [description]="card.description"
+      [date]="card.date"
+      [price]="card.price"
+    >
+
+    </app-card-category>
+  </div>
+    </div>
+  </div>
+</div>
+

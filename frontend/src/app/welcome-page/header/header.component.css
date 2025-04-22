@@ -1,4 +1,13 @@
-
+.search{
+  color: white;
+  font-weight: bold;
+  font-size: 4vh;
+  padding-left: 0;
+  border: none;
+}
+.search:hover{
+  color: #ff5a19;
+}
 .nav-link.btn-orange {
   background-color: #ff5a19;
   color: white !important;

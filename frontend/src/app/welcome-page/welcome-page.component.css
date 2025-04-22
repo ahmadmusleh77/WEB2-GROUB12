@@ -1,6 +1,6 @@
 
 .welcome-container{
-  background-image: url("/assets/welcome.png");
+  background-image: url("/assets/welcome.jpg");
   background-size: cover;
   background-position: center;
   height: 125vh;
@@ -8,6 +8,7 @@
   z-index: 1;
   color: white;
   overflow: hidden;
+
 }
 .welcome-content{
   position: absolute;
