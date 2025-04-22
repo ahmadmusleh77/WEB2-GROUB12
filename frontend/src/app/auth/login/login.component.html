@@ -3,30 +3,26 @@
     <h1>Access Account</h1>
     <p>Your gateway to innovation.</p>
 
-
-    <div class="input-group">
+    <div class="account-type-group">
       <label for="userType">Choose the account type</label>
       <select name="userType" id="userType" [(ngModel)]="userType">
         <option value="worker">job owner</option>
         <option value="owner">job sercher</option>
-        <option value="owner">Admin</option>
+        <option value="admin">Admin</option>
       </select>
 
-
-      <div class="input-group">
+      <div class="email-input-group">
         <i class="fa-regular fa-envelope icon-email"></i>
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email address"
-        (input)="updateEmail($event)"
-      />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          (input)="updateEmail($event)"
+        />
+      </div>
     </div>
-    </div>
 
-
-
-    <div class="input-group">
+    <div class="password-input-group">
       <i class="fa-solid fa-lock icon-password"></i>
       <input
         type="password"
@@ -35,8 +31,6 @@
         (input)="updatePassword($event)"
       />
     </div>
-
-
     <p class="forgot-password-link">
       <a routerLink="/forget-password" style="color: #ff5722;">Forgot your password?</a>
     </p>
@@ -49,7 +43,7 @@
 
     <p class="signup-link">
       Need to create an account?
-      <a routerLink="/createaccount" style="color: #ff5722;">Sign Up</a>
+      <a routerLink="/create-account" style="color: #ff5722;">Sign Up</a>
     </p>
   </div>
 </div>

@@ -1,21 +1,18 @@
-
 <div class="center-container">
   <div class="container">
     <h1>Create Account</h1>
     <p>Join us and manage your profile!</p>
 
-
-    <div class="input-group">
+    <div class="account-type-group">
       <label for="userType">Choose the account type</label>
       <select name="userType" id="userType" [(ngModel)]="userType">
         <option value="worker">job owner</option>
         <option value="owner">job search</option>
-        <option value="owner">Admin</option>
+        <option value="admin">Admin</option>
       </select>
     </div>
 
-
-    <div class="input-group">
+    <div class="username-group">
       <i class="fa-solid fa-user"></i>
       <input
         type="text"
@@ -25,8 +22,7 @@
       />
     </div>
 
-
-    <div class="input-group">
+    <div class="email-group">
       <i class="fa-regular fa-envelope"></i>
       <input
         type="email"
@@ -36,8 +32,7 @@
       />
     </div>
 
-
-    <div class="input-group">
+    <div class="password-group">
       <i class="fa-solid fa-lock"></i>
       <input
         type="password"
@@ -48,8 +43,7 @@
       <i class="fa-solid fa-eye" (click)="togglePasswordVisibility('password')"></i>
     </div>
 
-
-    <div class="input-group">
+    <div class="confirm-password-group">
       <i class="fa-solid fa-lock"></i>
       <input
         type="password"
@@ -80,7 +74,6 @@
         email.trim() === '' ||
         password.trim() === '' ||
         confirmPassword.trim() === '' ||
-        !termsAccepted ||
         password !== confirmPassword
       "
     >
@@ -94,25 +87,16 @@
     </p>
 
 
-
-    <button class="social-button">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-
-      </svg>
+    <button class="google-social-button">
       <i class="fa-brands fa-google" style="color: #ff5722; margin-right: 10px;"></i>
       Continue with Google
     </button>
 
 
-    <button class="social-button">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-
-      </svg>
+    <button class="facebook-social-button">
       <i class="fa-brands fa-facebook" style="color: #ff5722; margin-right: 10px;"></i>
       Continue with Facebook
     </button>
 
   </div>
 </div>
-
-

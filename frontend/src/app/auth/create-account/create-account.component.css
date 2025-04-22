@@ -1,8 +1,9 @@
+
 .center-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 #userType{
@@ -28,15 +29,21 @@ p {
   margin-bottom: 20px;
 }
 
-.input-group {
+
+.account-type-group,
+.username-group,
+.email-group,
+.password-group,
+.confirm-password-group {
   position: relative;
   margin-bottom: 15px;
 }
 
 
-.fa-user,
-.fa-envelope,
-.fa-lock {
+.username-group .fa-user,
+.email-group .fa-envelope,
+.password-group .fa-lock,
+.confirm-password-group .fa-lock {
   position: absolute;
   top: 50%;
   left: 10px;
@@ -45,9 +52,10 @@ p {
 }
 
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.username-group input[type="text"],
+.email-group input[type="email"],
+.password-group input[type="password"],
+.confirm-password-group input[type="password"] {
   width: 100%;
   padding: 10px 15px 10px 35px;
   border: 1px solid #ff5722;
@@ -57,7 +65,8 @@ input[type="password"] {
 }
 
 
-.fa-eye {
+.password-group .fa-eye,
+.confirm-password-group .fa-eye {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -65,13 +74,6 @@ input[type="password"] {
   cursor: pointer;
   color: #ccc;
 }
-
-input[type="checkbox"] {
-  margin-right: 5px;
-  border: 1px solid #ff5622;
-
-}
-
 
 .register-button {
   display: block;
@@ -93,7 +95,8 @@ input[type="checkbox"] {
 }
 
 
-.social-button {
+.google-social-button,
+.facebook-social-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,13 +108,6 @@ input[type="checkbox"] {
   font-size: 16px;
   cursor: pointer;
 }
-
-.social-button svg {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-}
-
 
 .login-link {
   text-align: center;
