@@ -1,0 +1,46 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-location {
+  color: #777;
+  margin: 8px 0;
+}
+
+.card-description {
+  color: #555;
+  margin: 16px 0;
+}
+
+.card-date {
+  font-weight: bold;
+}
+
+.card-price {
+  font-size: 20px;
+  color: #333;
+  margin: 10px 0;
+}
