@@ -28,6 +28,7 @@ import {EditPostComponent} from './job-owner/edit-post/edit-post.component';
 import {HomeJobownersComponent} from './job-owner/home-jobowners/home-jobowners.component';
 import {ManageBidsJobownerComponent} from './job-owner/manage-bids-jobowner/manage-bids-jobowner.component';
 import {ChatJobOwnerComponent} from './job-owner/chat-job-owner/chat-job-owner.component';
+import {CategoryComponent} from './category/category.component';
 
 
 
@@ -43,7 +44,8 @@ export const routes: Routes = [
       { path: 'create-account', component: CreateAccountComponent },
       { path: 'forget-password', component: ForgotPasswordComponent },
       { path: 'verification', component: OtpVerificationComponent },
-      { path: 'new-password', component: NewPasswordComponent }
+      { path: 'new-password', component: NewPasswordComponent },
+      { path:'category',component: CategoryComponent},
     ],
 
   },
