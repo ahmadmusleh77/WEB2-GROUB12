@@ -1,79 +1,128 @@
-<div class="settings-header">
+<div class="settings-container">
+
+  
+  <div class="settings-header">
     <h2>Settings</h2>
     <div class="tabs">
-      <span class="tab" [class.active]="activeTab === 'personal'" (click)="activeTab = 'personal'">Personal Info</span>
-      <span class="tab" [class.active]="activeTab === 'security'" (click)="activeTab = 'security'">Login & Security</span>
-      <span class="tab" [class.active]="activeTab === 'preferences'" (click)="activeTab = 'preferences'">Platform Preferences</span>
+      <span
+        class="tab"
+        [class.active]="activeTab === 'personal'"
+        (click)="activeTab = 'personal'"
+      >
+        Personal Info
+      </span>
+      <span
+        class="tab"
+        [class.active]="activeTab === 'security'"
+        (click)="activeTab = 'security'"
+      >
+        Login & Security
+      </span>
+      <span
+        class="tab"
+        [class.active]="activeTab === 'preferences'"
+        (click)="activeTab = 'preferences'"
+      >
+        Platform Preferences
+      </span>
     </div>
   </div>
+
   
-  <div class="settings-section" *ngIf="activeTab === 'personal'">
-    <label>Name:</label>
-    <input [(ngModel)]="personalInfo.name" />
-  
-    <label>Country:</label>
-    <input [(ngModel)]="personalInfo.country" />
-  
-    <label>Timezone:</label>
-    <input [(ngModel)]="personalInfo.timezone" />
-  
-    <label>About:</label>
-    <textarea [(ngModel)]="personalInfo.about"></textarea>
-  
-    <label>Languages spoken:</label>
-    <input [(ngModel)]="personalInfo.languages" />
+  <div class="settings-details">
+
+   
+    <div class="settings-section" *ngIf="activeTab === 'personal'">
+      <h3>Personal Info</h3>
+      <div class="settings-grid">
+        <div class="field">
+          <label>Name:</label>
+          <input [(ngModel)]="personalInfo.name" />
+        </div>
+        <div class="field">
+          <label>Country:</label>
+          <input [(ngModel)]="personalInfo.country" />
+        </div>
+        <div class="field">
+          <label>Timezone:</label>
+          <input [(ngModel)]="personalInfo.timezone" />
+        </div>
+        <div class="field">
+          <label>About:</label>
+          <textarea [(ngModel)]="personalInfo.about"></textarea>
+        </div>
+        <div class="field">
+          <label>Languages spoken:</label>
+          <input [(ngModel)]="personalInfo.languages" />
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-section" *ngIf="activeTab === 'security'">
+      <h3>Login & Security</h3>
+      <div class="settings-grid">
+        <div class="field">
+          <label>Email:</label>
+          <input [(ngModel)]="loginSecurity.email" type="email" />
+        </div>
+        <div class="field">
+          <label>Password:</label>
+          <input [(ngModel)]="loginSecurity.password" type="password" />
+        </div>
+        <div class="field">
+          <label>Two-Factor Auth:</label>
+          <input type="checkbox" [(ngModel)]="loginSecurity.twoFactor" />
+        </div>
+        <div class="field">
+          <label>Account Visibility:</label>
+          <select [(ngModel)]="loginSecurity.visibility">
+            <option>Public</option><option>Private</option><option>Only Me</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+ 
+    <div class="settings-section" *ngIf="activeTab === 'preferences'">
+      <h3>Platform Preferences</h3>
+      <div class="settings-grid">
+        <div class="field">
+          <label>Language:</label>
+          <select [(ngModel)]="platformPreferences.language">
+            <option>English</option><option>Arabic</option><option>French</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Theme:</label>
+          <select [(ngModel)]="platformPreferences.theme">
+            <option>Light</option><option>Dark</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Notifications:</label>
+          <input type="checkbox" [(ngModel)]="platformPreferences.notifications" />
+        </div>
+        <div class="field">
+          <label>Time Format:</label>
+          <select [(ngModel)]="platformPreferences.timeFormat">
+            <option>24h</option><option>AM/PM</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Content Layout:</label>
+          <select [(ngModel)]="platformPreferences.layout">
+            <option>Compact</option><option>Comfortable</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
   </div>
-  
-  <div class="settings-section" *ngIf="activeTab === 'security'">
-    <label>Email:</label>
-    <input [(ngModel)]="loginSecurity.email" />
-  
-    <label>Password:</label>
-    <input [(ngModel)]="loginSecurity.password" type="password" />
-  
-    <label>Two-Factor Auth:</label>
-    <input type="checkbox" [(ngModel)]="loginSecurity.twoFactor" />
-  
-    <label>Account Visibility:</label>
-    <select [(ngModel)]="loginSecurity.visibility">
-      <option>Public</option>
-      <option>Private</option>
-      <option>Only Me</option>
-    </select>
-  </div>
-  
-  <div class="settings-section" *ngIf="activeTab === 'preferences'">
-    <label>Language:</label>
-    <select [(ngModel)]="platformPreferences.language">
-      <option>English</option>
-      <option>Arabic</option>
-      <option>French</option>
-    </select>
-  
-    <label>Theme:</label>
-    <select [(ngModel)]="platformPreferences.theme">
-      <option>Light</option>
-      <option>Dark</option>
-    </select>
-  
-    <label>Notifications:</label>
-    <input type="checkbox" [(ngModel)]="platformPreferences.notifications" />
-  
-    <label>Time Format:</label>
-    <select [(ngModel)]="platformPreferences.timeFormat">
-      <option>24h</option>
-      <option>AM/PM</option>
-    </select>
-  
-    <label>Content Layout:</label>
-    <select [(ngModel)]="platformPreferences.layout">
-      <option>Compact</option>
-      <option>Comfortable</option>
-    </select>
-  </div>
+
   
   <div class="footer-buttons">
     <button class="discard" (click)="discardChanges()">Discard changes</button>
     <button class="apply" (click)="applyChanges()">Apply changes</button>
   </div>
-  
+
+</div>
