@@ -1,5 +1,6 @@
 .button{
-  box-sizing: var(5);
+
+
   border-color: #ff5a19;
   margin-left: 10px;
   border-radius: 8px;
@@ -17,3 +18,4 @@
   padding-top: 6vh;
 
 }
+
