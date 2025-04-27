@@ -3,6 +3,7 @@ import {HeaderComponent} from '../welcome-page/header/header.component';
 import {CardCategoryComponent} from './card-category/card-category.component';
 import {NgForOf} from '@angular/common';
 import {FilterCategoryComponent} from './filter-category/filter-category.component';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-category',
@@ -10,7 +11,8 @@ import {FilterCategoryComponent} from './filter-category/filter-category.compone
     HeaderComponent,
     CardCategoryComponent,
     NgForOf,
-    FilterCategoryComponent
+    FilterCategoryComponent,
+    FormsModule
   ],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
@@ -253,5 +255,19 @@ export class CategoryComponent {
       this.filteredCards = this.conversionItems.filter(card => card.title === title);
 
     }
+  }
+
+  searchTerm: string = '';
+
+  searchdCards: any[] = [];
+
+  // عند تحميل الكومبونت، نقوم بتهيئة الكروت المفلترة
+  ngOnInit() {
+    this.filteredCards = this.conversionItems;
+  }
+  searchCards() {
+    this.filteredCards = this.conversionItems.filter(card =>
+      card.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 }

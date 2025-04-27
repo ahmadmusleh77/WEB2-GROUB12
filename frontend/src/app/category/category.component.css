@@ -1,3 +1,60 @@
 .header{
   background-color: #b2b2b2;
 }
+
+/* From Uiverse.io by alexruix */
+.search{
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+  max-width: 27%;
+}
+.group {
+  display: flex;
+  justify-content: center;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+width: 100%;
+
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px  solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f3f3f4;
+  border-color: #ff5a19;
+
+  transition: .3s ease;
+}
+
+.input::placeholder {
+  color: #9e9ea7;
+}
+
+.input:focus, input:hover {
+  outline: none;
+  border-color: #903314;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px #ec8b69;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+
+
+
+
