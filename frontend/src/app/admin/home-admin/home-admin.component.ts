@@ -31,9 +31,25 @@ export class HomeAdminComponent {
     },
     {
       count: '1.2k+',
-      title: 'Total number of jobs completed',
+      title: 'Total NumberOf jobs completed',
       icon: 'fa-solid fa-clipboard-check'
+    },
+    {
+      count: '2k+',
+      title: 'Total number of daily jobs',
+      icon: 'fa-solid fa-clipboard-check'
+    },
+    {
+      count: '5+',
+      title: 'Total number of admins',
+      icon: 'fas fa-gear'
+    },
+    {
+      count: '1.2k+',
+      title: 'Total number of users',
+      icon: 'fa-solid fa-users-gear'
     }
+
   ];
   userList = [
     {
