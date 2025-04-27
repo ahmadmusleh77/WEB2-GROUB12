@@ -1,6 +1,15 @@
-body {
-  font-family: Arial, sans-serif;
+
+.row {
+
   margin: 0;
+  padding: 0;
+}
+
+.col-12,
+.col-md-12,
+.col-sm-12,
+.col-lg-12,
+.col-xl-12 {
   padding: 0;
 }
 
@@ -11,6 +20,9 @@ footer {
   padding: 40px 20px;
   font-size: 14px;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 footer a {
@@ -41,4 +53,9 @@ footer a:hover {
 
 .footer-bottom p {
   margin: 0;
+}
+.footer-content {
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
 }

@@ -1,23 +1,23 @@
 <div class="container">
-<div class="table-responsive5 " >
-  <table class="table table-striped table-hover table-bordered text-center custom-table ">
-    <thead class="table">
-    <h1 class="text-center mb-4">Most users post</h1>
 
-    <tr >
-      <th>clientName</th>
-      <th>Email</th>
-      <th>NumberPost</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of information;">
-      <td>{{ item.clientName }}</td>
-      <td>{{ item.Email }} </td>
-      <td>{{ item.NumberPost }}</td>
+  <h1 class="text-center mb-4">Most Users Post</h1>
 
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="table-responsive5">
+    <table class="table table-striped table-hover table-bordered text-center custom-table">
+      <thead class="table">
+      <tr>
+        <th>clientName</th>
+        <th>Email</th>
+        <th>NumberPost</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of information">
+        <td>{{ item.clientName }}</td>
+        <td>{{ item.Email }}</td>
+        <td>{{ item.NumberPost }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
