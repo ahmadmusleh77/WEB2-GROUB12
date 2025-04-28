@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-password',
@@ -13,6 +13,8 @@ export class NewPasswordComponent {
   password = '';
   confirmPassword = '';
 
+  passwordVisible = false;
+  confirmPasswordVisible = false;
 
   savePassword() {
     if (this.password === this.confirmPassword) {
@@ -20,31 +22,26 @@ export class NewPasswordComponent {
         password: this.password,
         confirmPassword: this.confirmPassword,
       });
-
     } else {
       alert('Passwords do not match.');
     }
   }
 
-
-  togglePasswordVisibility(field: string) {
-    const inputElement = document.querySelector(`input[name="${field}"]`);
-    if (inputElement) {
-      (inputElement as HTMLInputElement).type =
-        (inputElement as HTMLInputElement).type === 'password' ? 'text' : 'password';
+  togglePasswordVisibility(field: 'password' | 'confirmPassword') {
+    if (field === 'password') {
+      this.passwordVisible = !this.passwordVisible;
+    } else {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
     }
   }
-
 
   onPasswordInput(event: Event) {
     const target = event.target as HTMLInputElement;
     this.password = target.value;
   }
 
-
   onConfirmPasswordInput(event: Event) {
     const target = event.target as HTMLInputElement;
     this.confirmPassword = target.value;
   }
 }
-

@@ -35,25 +35,36 @@
     <div class="password-group">
       <i class="fa-solid fa-lock"></i>
       <input
-        type="password"
+        [type]="passwordVisible ? 'text' : 'password'"
         name="password"
         placeholder="Create a password"
         [(ngModel)]="password"
       />
-
+      <i
+        class="fa-solid"
+        [class.fa-eye]="!passwordVisible"
+        [class.fa-eye-slash]="passwordVisible"
+        (click)="togglePasswordVisibility('password')"
+        style="right: 10px;"
+      ></i>
     </div>
 
     <div class="confirm-password-group">
       <i class="fa-solid fa-lock"></i>
       <input
-        type="password"
+        [type]="confirmPasswordVisible ? 'text' : 'password'"
         name="confirmPassword"
         placeholder="Re-enter your password"
         [(ngModel)]="confirmPassword"
       />
-
+      <i
+        class="fa-solid"
+        [class.fa-eye]="!confirmPasswordVisible"
+        [class.fa-eye-slash]="confirmPasswordVisible"
+        (click)="togglePasswordVisibility('confirmPassword')"
+        style="right: 10px;"
+      ></i>
     </div>
-
 
     <div class="terms-checkbox">
       <input
@@ -64,7 +75,6 @@
       />
       <label for="termsCheckbox">I agree with Terms & Conditions</label>
     </div>
-
 
     <button
       class="register-button"
@@ -80,23 +90,19 @@
       Register
     </button>
 
-
     <p class="login-link">
       Already registered?
       <a routerLink="/login" style="color: #ff5722;">Log In</a>
     </p>
-
 
     <button class="google-social-button">
       <i class="fa-brands fa-google" style="color: #ff5722; margin-right: 10px;"></i>
       Continue with Google
     </button>
 
-
     <button class="facebook-social-button">
       <i class="fa-brands fa-facebook" style="color: #ff5722; margin-right: 10px;"></i>
       Continue with Facebook
     </button>
-
   </div>
 </div>
