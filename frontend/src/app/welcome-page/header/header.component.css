@@ -4,11 +4,15 @@
   color: white !important;
   margin-left: 10px;
   border-radius: 8px;
-  padding: 6px 15px;
+  padding: 6px 33px;
   transition: 0.3s;
 }
 
+.nav-link.btn-nav{
+  color: black;
+  padding-right: 30px;
 
+}
 .nav-link.btn-orange:hover {
   background-color: #ec8b69;
   color: white;
@@ -16,5 +20,5 @@
 .logo{
   font-size: 40px;
   font-weight: bold;
-  color: white;
+  color: black;
 }

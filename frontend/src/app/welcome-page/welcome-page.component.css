@@ -1,6 +1,6 @@
 
 .welcome-container{
-  background-image: url("/assets/welcome.jpg");
+  background-image: url("/assets/img-bacgrownd.jpg");
   background-size: cover;
   background-position: center;
   height: 125vh;
@@ -27,20 +27,14 @@
 }
 .welcome-box{
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
   padding: 130px;
-
-  border: 4px solid orangered;
-  background-color: rgba(0,0,0,0.6);
-  text-align: center;
-  color: white;
+  text-align: left;
+  color: black;
   font-size: 24px;
   font-weight: bold;
   z-index: 1;
   width: 80%;
-  display: none;
+
 }
 .spacer{
   height: 150vh;
@@ -48,8 +42,8 @@
 .text-paragraph{
   color: #ff5a19;
   font-weight: bold;
-  font-size: 50px;
-  display: none;
+  font-size: 34px;
+
 }
 
 .page-content{
@@ -65,25 +59,20 @@
   margin-top: 18%;
 }
 
-
-.welcome-container:hover .text{
-  display: none;
+.btn-orange {
+  background-color: #ff5a19;
+  font-size: 20px;
+  font-weight: bold;
+  color: white !important;
+  margin-left: 10px;
+  border-radius: 8px;
+  padding: 10px 33px;
+  transition: 0.3s;
 }
-.welcome-container:hover .welcome-box, .text-paragraph{
-  display: block;
+.btn-orange:hover{
+  background-color: #ec8b69;
+  color: white;
 }
-
-
-@media screen and (max-width:960px) {
-  .text-paragraph{font-size: 20px;}
-  .welcome-box{font-size:20px;padding: 45px; }
-  .page-content{top: 104%}
-  .welcome-container{height: 110vh}
-}
-@media screen and (max-width: 600px){
-  .welcome-box{font-size: 15px;padding: 30px}
-}
-
 
 .text-services{
   font-weight: bold;
@@ -97,6 +86,75 @@
   color: #ff5a19;
   text-align: center;
 }
-.group{
+.groupA{
   text-align: center;
+}
+
+
+
+.search{
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+  width: 27%;
+}
+.group {
+  display: flex;
+  justify-content: center;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  padding-left: 2.5rem;
+  border: 2px  solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #f3f3f4;
+  border-color: #ff5a19;
+
+  transition: .3s ease;
+}
+
+.input::placeholder {
+  color: #9e9ea7;
+}
+
+.input:focus, input:hover {
+  outline: none;
+  border-color: #903314;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px #ec8b69;
+}
+.cleck{
+  border: none;
+  margin-left: 10px;
+
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #9e9ea7;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+@media screen and (max-width:960px){
+  .search{width: 100%}
+  .text-paragraph{font-size: 20px;}
+  .welcome-box{font-size:20px;padding: 45px; }
+  .page-content{top: 104%}
+  .welcome-container{height: 110vh}
+}
+@media screen and (max-width: 600px){
+  .welcome-box{font-size: 15px;padding: 30px}
 }

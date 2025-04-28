@@ -4,6 +4,8 @@ import {StatisticsComponent} from './statistics/statistics.component';
 import {WhoWeAreComponent} from './who-we-are/who-we-are.component';
 import {FooterWelcomeComponent} from './footer-welcome/footer-welcome.component';
 import {CardWelcomeComponent} from './card-welcome/card-welcome.component';
+import {Router, RouterLink} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
@@ -14,7 +16,8 @@ import {CardWelcomeComponent} from './card-welcome/card-welcome.component';
     StatisticsComponent,
     FooterWelcomeComponent,
     CardWelcomeComponent,
-
+    FormsModule,
+    RouterLink,
 
 
   ],
@@ -23,5 +26,14 @@ import {CardWelcomeComponent} from './card-welcome/card-welcome.component';
 })
 export class WelcomePageComponent {
 
+  searchTerm: string = '';
+
+  constructor(private router: Router) {}
+
+  navigateToSearchPage() {
+    if (this.searchTerm.trim()) {
+      this.router.navigate(['/category'], { queryParams: { q: this.searchTerm } });
+    }
+  }
 
 }
