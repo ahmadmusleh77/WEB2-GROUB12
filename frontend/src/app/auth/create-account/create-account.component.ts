@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {RouterLink} from '@angular/router';
-
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -17,8 +16,10 @@ export class CreateAccountComponent {
   password = '';
   confirmPassword = '';
   termsAccepted = false;
-  userType: string='';
+  userType: string = '';
 
+  passwordVisible = false;
+  confirmPasswordVisible = false;
 
   register() {
     if (this.password === this.confirmPassword && this.termsAccepted) {
@@ -29,18 +30,16 @@ export class CreateAccountComponent {
         confirmPassword: this.confirmPassword,
         termsAccepted: this.termsAccepted,
       });
-
     } else {
       alert('Please fill out all fields and accept the terms.');
     }
   }
 
-
-  togglePasswordVisibility(field: string) {
-    const inputElement = document.querySelector(`input[name="${field}"]`);
-    if (inputElement) {
-      (inputElement as HTMLInputElement).type =
-        (inputElement as HTMLInputElement).type === 'password' ? 'text' : 'password';
+  togglePasswordVisibility(field: 'password' | 'confirmPassword') {
+    if (field === 'password') {
+      this.passwordVisible = !this.passwordVisible;
+    } else {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
     }
   }
 }

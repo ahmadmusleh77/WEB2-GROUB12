@@ -1,15 +1,14 @@
-
 .center-container {
-  display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#userType{
+#userType {
   margin-left: 12px;
-
 }
+
 .container {
   max-width: 400px;
   padding: 20px;
@@ -29,7 +28,6 @@ p {
   margin-bottom: 20px;
 }
 
-
 .account-type-group,
 .username-group,
 .email-group,
@@ -38,7 +36,6 @@ p {
   position: relative;
   margin-bottom: 15px;
 }
-
 
 .username-group .fa-user,
 .email-group .fa-envelope,
@@ -51,28 +48,31 @@ p {
   color: #ff5722;
 }
 
-
 .username-group input[type="text"],
 .email-group input[type="email"],
 .password-group input[type="password"],
-.confirm-password-group input[type="password"] {
+.password-group input[type="text"],
+.confirm-password-group input[type="password"],
+.confirm-password-group input[type="text"] {
   width: 100%;
-  padding: 10px 15px 10px 35px;
+  padding: 10px 35px 10px 35px; /* يمين ويسار متساوي */
   border: 1px solid #ff5722;
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
 }
 
-
 .password-group .fa-eye,
-.confirm-password-group .fa-eye {
+.password-group .fa-eye-slash,
+.confirm-password-group .fa-eye,
+.confirm-password-group .fa-eye-slash {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
   color: #ccc;
+  font-size: 18px;
 }
 
 .register-button {
@@ -93,7 +93,6 @@ p {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
 
 .google-social-button,
 .facebook-social-button {
