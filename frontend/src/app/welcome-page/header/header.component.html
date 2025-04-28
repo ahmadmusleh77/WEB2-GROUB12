@@ -2,34 +2,31 @@
 <nav class="navbar navbar-expand-lg  bg-transparent">
   <div class="container-fluid" style="z-index: 3;">
     <div class="d-flex align-items-center">
-    <img ngSrc="/assets/icon.png" alt="Logo" width="140" height="43" class="me-2">
-    <a class="navbar-brand logo" href="#">THP</a>
+      <img ngSrc="/assets/icon.png" alt="Logo" width="140" height="43" class="me-2">
+      <a class="navbar-brand logo" href="#">THP</a>
     </div>
     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon "></span>
     </button>
 
     <div class=" navbar-collapse justify-content-end" id="navbarSupportedContent">
-         <ul class="navbar-nav mb-2 mb-lg-0 d-flex ">
-           <li class="nav-item">
-             <a class="nav-link btn-orange" routerLink="/category">All jobs</a>
-           </li>
-           <li class="nav-item">
-            <a class="nav-link btn-orange" routerLink="/login">Log in</a>
-           </li>
-           <li class="nav-item">
-            <a class="nav-link btn-orange" routerLink="/create-account">Sign up</a>
-           </li>
-           <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle btn-orange" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              User type
-             </a>
-             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" routerLink="/artisans-dashboard">Job search</a></li>
-                <li><a class="dropdown-item" routerLink="/job-owner-dashboard">Job owner</a></li>
-             </ul>
-           </li>
-         </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex ">
+
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle btn-nav" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User type
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" routerLink="/artisans-dashboard">Job search</a></li>
+            <li><a class="dropdown-item" routerLink="/job-owner-dashboard">Job owner</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn-orange" routerLink="/login">Log in</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

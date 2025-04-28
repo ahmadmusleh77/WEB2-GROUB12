@@ -4,6 +4,7 @@ import {CardCategoryComponent} from './card-category/card-category.component';
 import {NgForOf} from '@angular/common';
 import {FilterCategoryComponent} from './filter-category/filter-category.component';
 import {FormsModule} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -242,32 +243,36 @@ export class CategoryComponent {
 }
 ];
 
-  filteredCards = [...this.conversionItems]; // الكروت المصفاة
+  searchTerm: string = ''; // لتخزين قيمة البحث من الرابط
+  filteredCards: any[] = []; // لتخزين النتائج المصفاة
+
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    // استقبال قيمة البحث من الرابط
+    this.route.queryParams.subscribe(params => {
+      this.searchTerm = params['q'] || '';
+      this.searchCards();
+    });
+  }
+
+
+  searchCards() {
+    this.filteredCards = this.conversionItems.filter(card =>
+      card.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
 
   onFilter(title: string) {
     console.log('Selected Title:', title);
     console.log('Filter Event Received:', title);
     if (!title) {
-      // إذا لم يتم تحديد عنوان، أظهر جميع الكروت
       this.filteredCards = [...this.conversionItems];
     } else {
-      // تصفية الكروت بناءً على العنوان
       this.filteredCards = this.conversionItems.filter(card => card.title === title);
 
     }
-  }
-
-  searchTerm: string = '';
-
-  searchdCards: any[] = [];
-
-  // عند تحميل الكومبونت، نقوم بتهيئة الكروت المفلترة
-  ngOnInit() {
-    this.filteredCards = this.conversionItems;
-  }
-  searchCards() {
-    this.filteredCards = this.conversionItems.filter(card =>
-      card.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
   }
 }
