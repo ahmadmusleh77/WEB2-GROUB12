@@ -81,15 +81,17 @@ export class ManageComponent {
 
   ];
 
-  deleteOffer(index: number) {
-    if (confirm('Are you sure you want to delete this offer?')) {
-      this.manage.splice(index, 1);
-    }
+  deleteOffer(user  :any) {
+    alert(' reject for'+ user.UserName);
   }
-  acceptOffer(index: number) {
-    alert(`Offer accepted for ${this.manage[index].UserName}`);
+  acceptOffer(user  :any) {
+
+   console.log(user)
+    alert(' accepted for'+ user.UserName);
+
+ //  this.usrServices.deleteUser(user.id)
     // إذا بدك تحدث الحالة:
-    this.manage[index].status = 'accepted';
+   // this.manage[index].status = 'accepted';
   }
 
 }
