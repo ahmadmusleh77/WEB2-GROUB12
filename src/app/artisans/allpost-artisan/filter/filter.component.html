@@ -1,0 +1,32 @@
+<div class="filter-container mb-4">
+  <h3>Filter Jobs</h3>
+  <form (ngSubmit)="onFilterChange()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="jobTitle" class="form-label">Job Title</label>
+        <input type="text" id="jobTitle" class="form-control" [(ngModel)]="jobTitle" name="jobTitle" (input)="onFilterChange()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="minPrice" class="form-label">Min Price</label>
+        <input type="number" id="minPrice" class="form-control" [(ngModel)]="minPrice" name="minPrice" (input)="onFilterChange()" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" id="location" class="form-control" [(ngModel)]="location" name="location" (input)="onFilterChange()" />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="maxPrice" class="form-label">Max Price</label>
+        <input type="number" id="maxPrice" class="form-control" [(ngModel)]="maxPrice" name="maxPrice" (input)="onFilterChange()" />
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-outline-secondary clear-btn" (click)="clearFilters()">Clear Filters</button>
+    </div>
+  </form>
+</div>

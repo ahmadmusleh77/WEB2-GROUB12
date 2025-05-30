@@ -1,0 +1,77 @@
+
+<div class="container mb-4 mt-0 py-4">
+  <div class="row g-4">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let item of conversionItems">
+      <div class="card h-100">
+        <img [src]="item.image" alt="Carpentry" class="card-img-top">
+        <div class="card-body d-flex flex-column">
+          <h2 class="card-title">{{ item.title }}</h2>
+          <p class="card-location">{{ item.location }}</p>
+          <p class="card-description">{{ item.description }}</p>
+          <p class="card-date">{{ item.date }}</p>
+          <p class="card-price">{{ item.price }}</p>
+          <a href="#" class="card-button mt-auto" data-bs-toggle="modal" data-bs-target="#detailsModal" (click)="openModal(item)">
+            More details <i class="fa-solid fa-circle-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel">{{ selectedItem?.title }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <img [src]="selectedItem?.image" alt="Image" class="custom-img " />
+          <img [src]="selectedItem?.additionalImage" alt="Additional Image" class="custom-img " />
+        </div>
+        <p class="post-by"><strong>Posted by:</strong>
+          <a [routerLink]="['/profile', selectedItem?.ownerId]" class="owner-link"  title="Profile">
+            {{ selectedItem?.ownerName }}
+
+          </a>
+        </p>
+        <p><strong>Location:</strong> {{ selectedItem?.location }}</p>
+        <p><strong>Description:</strong> {{ selectedItem?.description }}</p>
+        <p><strong>Date:</strong> {{ selectedItem?.date }}</p>
+        <p><strong>Price:</strong> {{ selectedItem?.price }}</p>
+
+        <hr />
+
+        <!-- Request Form -->
+        <form #requestForm="ngForm" (ngSubmit)="submitRequest()" class="request-grid">
+          <div>
+            <label for="userName" class="form-label">User Name</label>
+            <input type="text" id="userName" class="form-control" [(ngModel)]="formData.userName" name="userName" required />
+          </div>
+
+          <div>
+            <label for="amount" class="form-label">The Required Amount</label>
+            <input type="number" id="amount" class="form-control" [(ngModel)]="formData.amount" name="amount" required />
+          </div>
+
+          <div>
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" id="startDate" class="form-control" [(ngModel)]="formData.startDate" name="startDate" required />
+          </div>
+
+          <div class="submit-btn-container">
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

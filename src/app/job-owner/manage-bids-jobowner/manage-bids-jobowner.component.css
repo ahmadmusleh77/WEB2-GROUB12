@@ -1,0 +1,130 @@
+.table-container {
+  margin-top: 70px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+td {
+  background-color: #fff;
+  font-size: 1rem;
+  color: #555;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+.badge {
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: normal;
+  display: inline-block;
+  width: 95px;
+  text-align: center;
+  line-height: 18px;
+  height: 30px;
+}
+
+.badge.bids {
+  background-color: white;
+  color: #555;
+}
+
+.badge.bg-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button.btn-danger {
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  background-color: #d30615;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 95px;
+  text-align: center;
+  line-height: 18px;
+  height: 30px;
+}
+
+button.btn-danger:hover {
+  background-color: #a80510;
+}
+
+.submitted-offers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+.submitted-offers-container .subtitle {
+  font-weight: bold;
+  font-size: 24px;
+  color: #ff4800;
+  margin-bottom: 6px;
+}
+
+.submitted-offers-container .main-description {
+  font-size: 16px;
+  color: #555;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .custom-table th, .custom-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .table-container {
+    padding: 10px;
+    margin: 20px 10px;
+  }
+}
+
+.non {
+  background-color: #ff5a19 !important;
+  color: white;
+}

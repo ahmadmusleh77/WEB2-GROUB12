@@ -1,0 +1,11 @@
+
+  <div class="card h-100">
+    <div class="card-body text-center">
+      <h2 class="card-title">{{ title }}</h2>
+      <p class="card-text">
+        {{text}}
+      </p>
+    </div>
+    <img [src]="imageUrl"  class="card-img-bottom w-100" alt="Card image" *ngIf="imageUrl">
+  </div>
+
