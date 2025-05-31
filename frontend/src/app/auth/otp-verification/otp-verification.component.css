@@ -3,11 +3,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #fff8f1;
 }
 
 .container {
   max-width: 400px;
-  padding: 20px;
+  padding: 30px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,11 +18,20 @@
 h1 {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #333;
 }
 
 p {
   font-size: 16px;
   margin-bottom: 20px;
+  color: #666;
+}
+
+.email-display {
+  font-weight: bold;
+  color: #ff5722;
+  margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .input-group {
@@ -50,9 +60,9 @@ input[type="text"] {
 
 
 .send-code {
-  display: block;
+  display: flex;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #ff5722;
   color: #fff;
   border: none;
@@ -60,17 +70,54 @@ input[type="text"] {
   font-size: 16px;
   cursor: pointer;
   text-align: center;
-  margin-top: 10px;
-
-  display: flex;
+  margin-top: 20px;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 .send-code i {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .send-code:hover {
   background-color: #e64a19;
+}
+
+.send-code:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.resend-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.resend-button {
+  background: none;
+  border: none;
+  color: #ff5722;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.resend-button i {
+  margin-right: 5px;
+}
+
+.resend-button:disabled {
+  color: #999;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
 }
