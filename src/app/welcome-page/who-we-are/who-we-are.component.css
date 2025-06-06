@@ -1,0 +1,39 @@
+.percentage {
+  font-size: 36px;
+  color: #ff5722;
+  font-weight: bold;
+}
+.description {
+  font-size: 14px;
+
+}
+.checkmark {
+  font-size: 18px;
+  color: #ff5722;
+  margin-right: 10px;
+}
+img{
+  width: 449px;
+  height: 562px;
+}
+.box{
+  width: 243px;
+  height: 123px;
+  background-color: #bcc1ca;
+  z-index: 1;
+  position: absolute;
+  bottom: -500px; /* Adjust this value to move the text up or down */
+  left: 15%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+
+}
+
+@media screen and (max-width: 990px)and (min-width: 760px){
+  .section{margin-top: 50vh;}
+
+}

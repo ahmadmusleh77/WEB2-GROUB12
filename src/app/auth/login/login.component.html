@@ -1,0 +1,57 @@
+<div class="center-container">
+  <div class="container">
+    <h1>Access Account</h1>
+    <p>Your gateway to innovation.</p>
+
+    <div class="account-type-group">
+      <label for="userType">Choose the account type</label>
+      <select name="userType" id="userType" [(ngModel)]="userType">
+        <option value="worker">job owner</option>
+        <option value="owner">job sercher</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <div class="email-input-group">
+        <i class="fa-regular fa-envelope icon-email"></i>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          (input)="updateEmail($event)"
+        />
+      </div>
+    </div>
+
+    <div class="password-input-group">
+      <i class="fa-solid fa-lock icon-password"></i>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter your password"
+        (input)="updatePassword($event)"
+      />
+    </div>
+    <p class="forgot-password-link">
+      <a routerLink="/forget-password" style="color: #ff5722;">Forgot your password?</a>
+    </p>
+
+
+    <button class="login-button" (click)="login()" [disabled]="email.trim() === '' || password.trim() === ''">
+      Log In
+    </button>
+
+
+    <p class="signup-link">
+      Need to create an account?
+      <a routerLink="/create-account" style="color: #ff5722;">Sign Up</a>
+    </p>
+  </div>
+</div>
+
+<ul>
+  <li><a routerLink="/admin-dashboard">Admin</a></li>
+  <li><a routerLink="/artisans-dashboard">Job search</a></li>
+  <li><a routerLink="">Job-owner</a></li>
+</ul>
+
+

@@ -1,0 +1,41 @@
+
+.footer {
+  background-color: #b2b2b2;
+  padding: 40px 0;
+}
+.footer h5 {
+  color: white;
+  margin-bottom: 20px;
+}
+.footer p {
+  color: white;
+  font-size: 0.9rem;
+}
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+.footer a:hover {
+color: #ec8b69;
+}
+.footer .logo {
+  width: 143px;
+  height: 43px;
+}
+
+.footer .contact-icon {
+  color: #ff5a19;
+  margin-right: 5px;
+}
+.footer span{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+
+}
+
+@media screen and (min-width: 980px){
+  .small-screen-1{padding-left: 20vh;}
+  .small-screen-2{padding-left: 5vh;}
+
+}

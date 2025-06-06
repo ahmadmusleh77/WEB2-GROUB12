@@ -1,0 +1,21 @@
+<div class="center-container">
+  <div class="container" [formGroup]="otpForm">
+    <h1>Access Account</h1>
+    <p>One-Time Password Reset (OTP)</p>
+
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock icon-lock"></i>
+      <input
+        type="text"
+        placeholder="Enter verification code"
+        formControlName="code"
+      />
+    </div>
+
+
+    <button routerLink="/new-password" class="send-code" (click)="sendCode()">
+      <i class="fa-solid fa-check"></i> Send Code
+    </button>
+  </div>
+</div>
