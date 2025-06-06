@@ -17,9 +17,9 @@
         </div>
 
         <div class="post-buttons">
-          <a routerLink="/job-owner-dashboard/manage-bids-job-owner" class="btn btn-outline-blue">Manage Bids</a>
-          <a routerLink="/job-owner-dashboard/edit-post" class="btn btn-outline-green">Edit</a>
-          <button class="btn btn-outline-red" (click)="deletePost(i)">Delete</button>
+          <a [routerLink]="['/job-owner-dashboard/manage-bids-job-owner', post.job_id]" class="btn btn-outline-blue">Manage Bids</a>   
+          <a [routerLink]="['/job-owner-dashboard/edit-post', post.job_id]" class="btn btn-outline-green">Edit</a>         
+           <button class="btn btn-outline-red" (click)="deletePost(i)">Delete</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div class="edit-container">
+<!-- <div class="edit-container">
   <h2 class="edit-title">Edit Job <strong>Posting</strong></h2>
 
   <form class="edit-form">
@@ -25,6 +25,38 @@
 
     <div class="form-buttons">
       <button type="submit" class="btn-save" routerLink="/job-owner-dashboard/home-job-owner">Save</button>
+      <button type="button" class="btn-cancel" routerLink="/job-owner-dashboard/home-job-owner">Cancel</button>
+    </div>
+  </form>
+</div> -->
+
+<div class="edit-container">
+  <h2 class="edit-title">Edit Job <strong>Posting</strong></h2>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="edit-form">
+    <label for="title">Job Title</label>
+    <input id="title" type="text" formControlName="title" placeholder="Job Title" required />
+
+    <label for="description">Job Description</label>
+    <textarea id="description" rows="5" formControlName="description" placeholder="Job Description" required></textarea>
+
+    <label for="budget">Budget</label>
+    <input id="budget" type="text" formControlName="budget" placeholder="Budget" required />
+
+    <label for="location">Location</label>
+    <input id="location" type="text" formControlName="location" placeholder="Location" required />
+
+    <label for="deadline">Deadline</label>
+    <input id="deadline" type="date" formControlName="deadline" required />
+
+    <label>Add Image</label>
+    <div class="file-row">
+      <input type="file" (change)="onFileSelected($event)" />
+      <img *ngIf="previewUrl" [src]="previewUrl" class="preview-img" alt="Preview" />
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn-save" [disabled]="isSubmitting">Save</button>
       <button type="button" class="btn-cancel" routerLink="/job-owner-dashboard/home-job-owner">Cancel</button>
     </div>
   </form>

@@ -6,7 +6,7 @@ import {PostListComponent} from './post-list/post-list.component';
   selector: 'app-home-jobowners',
   imports: [
     HeroSectionComponent,
-    PostListComponent
+    PostListComponent,
   ],
   templateUrl: './home-jobowners.component.html',
   styleUrl: './home-jobowners.component.css'

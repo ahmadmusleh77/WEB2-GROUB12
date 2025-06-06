@@ -84,9 +84,13 @@ export const routes: Routes = [
       { path: 'home-job-owner', component: HomeJobownersComponent },
       {path: 'offer-job-owner',component: OfferJobownerComponent},
       {path: 'creat-posts',component: CreatePostComponent},
-      {path: 'edit-post',component: EditPostComponent},
-      {path:'manage-bids-job-owner',component: ManageBidsJobownerComponent},
-      {path:'edit-post',component: EditPostComponent},
+      { path: 'edit-post/:id', component: EditPostComponent }, 
+      {  path: 'manage-bids-job-owner/:job_id',
+        component: ManageBidsJobownerComponent},
+      // {
+      //   path: 'job-owner-dashboard/edit-post/:id',
+      //   component: EditPostComponent
+      // },
       {path:'profile-job-owner',component:AccountProfileComponent},
       {path:'settings-job-owner',component:SettingsComponent},
       { path: 'chat-job-owner', component:ChatJobOwnerComponent},
