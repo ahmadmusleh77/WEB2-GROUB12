@@ -1,21 +1,38 @@
 <div class="center-container">
   <div class="container" [formGroup]="otpForm">
-    <h1>Access Account</h1>
-    <p>One-Time Password Reset (OTP)</p>
-
+    <h1>Account Activation</h1>
+    <p>Verification code has been sent to your email</p>
+    <p *ngIf="email" class="email-display">{{ email }}</p>
 
     <div class="input-group">
       <i class="fa-solid fa-lock icon-lock"></i>
       <input
         type="text"
-        placeholder="Enter verification code"
+        placeholder="Enter the 6-digit verification code"
         formControlName="code"
+        maxlength="6"
       />
     </div>
 
-
-    <button routerLink="/new-password" class="send-code" (click)="sendCode()">
-      <i class="fa-solid fa-check"></i> Send Code
+    <button class="send-code" (click)="sendCode()" [disabled]="!otpForm.valid">
+      <i class="fa-solid fa-check"></i> Activate Account
     </button>
+
+    <div class="resend-container">
+      <button 
+        class="resend-button" 
+        (click)="resendOtp()" 
+        [disabled]="resendDisabled"
+      >
+        <i class="fa-solid fa-rotate"></i> 
+        Resend Code
+        <span *ngIf="countdown > 0">({{ countdown }})</span>
+      </button>
+    </div>
+
+    <p class="login-link">
+      Back to 
+      <a routerLink="/login" style="color: #ff5722;">Login</a>
+    </p>
   </div>
 </div>

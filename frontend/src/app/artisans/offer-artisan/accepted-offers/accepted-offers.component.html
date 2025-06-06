@@ -23,18 +23,20 @@
         <td>{{ offer.clientName }}</td>
         <td>{{ offer.price }} $</td>
         <td>
-          <span class="badge bg-warning" *ngIf="offer.status === 'in_progress'">In Progress</span>
-          <span class="badge bg-success" *ngIf="offer.status === 'completed'">Completed</span>
-          <span class="badge bg-secondary" *ngIf="offer.status === 'pending'">Pending</span>
+          <span class="badge bg-secondary" *ngIf="offer.status === 'Pending'">Pending</span>
+          <span class="badge bg-warning" *ngIf="offer.status === 'In Progress'">In Progress</span>
+          <span class="badge bg-success" *ngIf="offer.status === 'Completed'">Completed</span>
         </td>
         <td>
-          <select class="select" [(ngModel)]="offer.status" (ngModelChange)="updateStatus(offer.id, offer.status)">
-            <option value="in_progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="pending">Pending</option>
+          <select class="select"
+                  [ngModel]="offer.status"
+                  (ngModelChange)="updateStatus(offer.id, $event)">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
           </select>
         </td>
-      </tr>
+
       <tr *ngIf="acceptedOffers.length === 0">
         <td colspan="5">No accepted offers yet.</td>
       </tr>

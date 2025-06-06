@@ -4,7 +4,7 @@
     <div *ngFor="let contact of contacts"
          class="chat-contact"
          (click)="selectChat(contact)"
-         [ngClass]="{ 'selected': selectedChat?.id === contact.id }">
+         [ngClass]="{ 'selected': selectedChat.id === contact.id }">
       <img [src]="contact.avatar" alt="Avatar" />
       <div>
         <h5>{{ contact.name }}</h5>

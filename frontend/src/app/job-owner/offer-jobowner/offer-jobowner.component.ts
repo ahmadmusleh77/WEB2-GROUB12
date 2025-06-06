@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {ArtisanNavbarComponent} from '../../artisans/navbar-artisan/artisan-navbar.component';
-import {FooterComponent} from '../../artisans/footer-artisan/footer.component';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 interface Offer {
@@ -15,8 +13,6 @@ interface Offer {
   selector: 'app-offer-jobowner',
   templateUrl: './offer-jobowner.component.html',
   imports: [
-    ArtisanNavbarComponent,
-    FooterComponent,
     NgForOf,
     NgIf,
     NgClass

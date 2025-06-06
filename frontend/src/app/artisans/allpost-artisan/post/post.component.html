@@ -1,43 +1,39 @@
 <div class="container mb-4 mt-0 py-4">
   <app-filter (filterChanged)="onFilterChanged($event)"></app-filter>
 
+
+
+
   <div class="row g-4">
-    <div
-      class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3"
-      *ngFor="let item of filteredItems | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage"
-    >
-      <div class="card h-100">
-        <img [src]="item.image" alt="Carpentry" class="card-img-top">
-        <div class="card-body d-flex flex-column">
-          <h2 class="card-title">{{ item.title }}</h2>
-          <p class="card-location">{{ item.location }}</p>
-          <p class="card-description">{{ item.description }}</p>
-          <p class="card-date">{{ item.date }}</p>
-          <p class="card-price">{{ item.price }}</p>
-          <a href="#" class="card-button mt-auto" data-bs-toggle="modal" data-bs-target="#detailsModal" (click)="openModal(item)">
-            More details <i class="fa-solid fa-circle-chevron-right"></i>
-          </a>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let item of filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)"
+        >
+          <div class="card h-100">
+            <img [src]="item.image" alt="image" class="card-img-top">
+            <div class="card-body d-flex flex-column">
+              <h2 class="card-title">{{ item.title }}</h2>
+              <p class="card-location">{{ item.location }}</p>
+              <p class="card-description">{{ item.description }}</p>
+              <p class="card-date">{{ item.date }}</p>
+              <p class="card-price">{{ item.price }}</p>
+              <a href="#" class="card-button mt-auto" data-bs-toggle="modal" data-bs-target="#detailsModal" (click)="openModal(item)">
+                More details <i class="fa-solid fa-circle-chevron-right"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Pagination Control -->
+
+  <!-- Pagination -->
   <div class="d-flex justify-content-center mt-4">
     <nav>
       <ul class="pagination">
         <li class="page-item" [class.disabled]="currentPage === 1">
           <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
         </li>
-
-        <li
-          class="page-item"
-          *ngFor="let page of totalPagesArray"
-          [class.active]="page === currentPage"
-        >
+        <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
           <a class="page-link" (click)="changePage(page)">{{ page }}</a>
         </li>
-
         <li class="page-item" [class.disabled]="currentPage === totalPages">
           <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
         </li>
@@ -45,6 +41,7 @@
     </nav>
   </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -59,8 +56,8 @@
           <img [src]="selectedItem?.image" alt="Image" class="custom-img " />
           <img [src]="selectedItem?.additionalImage" alt="Additional Image" class="custom-img " />
         </div>
-        <p><strong>Posted by:</strong>
-          <a [routerLink]="['/profile', selectedItem?.ownerId]" class="owner-link"  title="Profile">
+        <p class="post-by"><strong>Posted by:</strong>
+          <a class="owner-link"  title="Profile">
             {{ selectedItem?.ownerName }}
 
           </a>

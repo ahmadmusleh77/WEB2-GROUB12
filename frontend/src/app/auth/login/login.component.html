@@ -6,31 +6,38 @@
     <div class="account-type-group">
       <label for="userType">Choose the account type</label>
       <select name="userType" id="userType" [(ngModel)]="userType">
-        <option value="worker">job owner</option>
-        <option value="owner">job sercher</option>
-        <option value="admin">Admin</option>
+        <option value="3">Job Owner</option>
+        <option value="2">Job Searcher</option>
+        <option value="1">Admin</option>
       </select>
+    </div>
 
-      <div class="email-input-group">
-        <i class="fa-regular fa-envelope icon-email"></i>
-        <input
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          (input)="updateEmail($event)"
-        />
-      </div>
+    <div class="email-input-group">
+      <i class="fa-regular fa-envelope icon-email"></i>
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        (input)="updateEmail($event)"
+      />
     </div>
 
     <div class="password-input-group">
       <i class="fa-solid fa-lock icon-password"></i>
       <input
-        type="password"
+        [type]="passwordVisible ? 'text' : 'password'"
         name="password"
         placeholder="Enter your password"
         (input)="updatePassword($event)"
       />
+      <i
+        class="fa-solid password-toggle-icon"
+        [class.fa-eye]="!passwordVisible"
+        [class.fa-eye-slash]="passwordVisible"
+        (click)="togglePasswordVisibility()"
+      ></i>
     </div>
+
     <p class="forgot-password-link">
       <a routerLink="/forget-password" style="color: #ff5722;">Forgot your password?</a>
     </p>
@@ -40,18 +47,10 @@
       Log In
     </button>
 
-
     <p class="signup-link">
       Need to create an account?
       <a routerLink="/create-account" style="color: #ff5722;">Sign Up</a>
     </p>
   </div>
 </div>
-
-<ul>
-  <li><a routerLink="/admin-dashboard">Admin</a></li>
-  <li><a routerLink="/artisans-dashboard">Job search</a></li>
-  <li><a routerLink="">Job-owner</a></li>
-</ul>
-
 
