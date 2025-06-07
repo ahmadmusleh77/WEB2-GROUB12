@@ -1,29 +1,34 @@
 <div class="form-container">
   <h2 class="page-title">Create Job <strong>Posting</strong></h2>
 
-  <form>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <label>Job Title</label>
-    <input type="text" name="title" placeholder="Job Title" required />
+    <input type="text" formControlName="title" placeholder="Job Title" required />
 
     <label>Job Description</label>
-    <textarea name="description" placeholder="Job Description" required></textarea>
+    <textarea formControlName="description" placeholder="Job Description" required></textarea>
 
     <label>Budget</label>
-    <input type="text" name="budget" placeholder="Budget" required />
+    <input type="text" formControlName="budget" placeholder="Budget" required />
 
     <label>Location</label>
-    <input type="text" name="location" placeholder="Location" required />
+    <input type="text" formControlName="location" placeholder="Location" required />
 
     <label>Deadline</label>
-    <input type="date" name="deadline" required />
+    <input type="date" formControlName="deadline" required />
 
     <label>Add Image</label>
     <div class="file-upload-wrapper">
-      <input type="file" id="file-upload" />
-      <label for="file-upload" class="file-upload-label">📎 Attach files +</label>
+      <input type="file" id="image-upload" (change)="onFileSelected($event)" hidden />
+      <label for="image-upload" class="file-upload-label">📎 Add Image+</label>
     </div>
 
-    <button type="submit" class="submit-btn" routerLink="/job-owner-dashboard/home-job-owner">Submit</button>
-
+    <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+      <ng-container *ngIf="!isSubmitting; else loading">Submit</ng-container>
+      <ng-template #loading>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Submitting...
+      </ng-template>
+    </button>
   </form>
 </div>
