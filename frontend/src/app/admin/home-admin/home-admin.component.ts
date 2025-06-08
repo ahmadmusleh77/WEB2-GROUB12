@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CardReportComponent} from "./card-report/card-report.component";
 import {NgForOf} from "@angular/common";
 import {TabelReport2Component} from "./tabel-report2/tabel-report2.component";
 import {TabelReportComponent} from "./tabel-report/tabel-report.component";
 import {TitelAdminComponent} from "./titel-admin/titel-admin.component";
+import {AdminService} from '../../services/admin.service';
+import {Most} from '../../models/most';
 
 @Component({
   selector: 'app-home-admin',
@@ -17,35 +19,45 @@ import {TitelAdminComponent} from "./titel-admin/titel-admin.component";
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.css'
 })
-export class HomeAdminComponent {
+export class HomeAdminComponent implements  OnInit{
+
+most:Most[]=[]
+constructor(private adminService : AdminService) {
+}
+
+
+
+
+
+
   cards = [
     {
-      count: '20k+',
+      count: '',
       title: 'Total Registered Artisans',
       icon: 'fa-solid fa-users-gear'
     },
     {
-      count: '5k+',
+      count: '',
       title: 'Total number of jobs posted',
       icon: 'fas fa-briefcase'
     },
     {
-      count: '1.2k+',
+      count: '',
       title: 'Total NumberOf jobs completed',
       icon: 'fa-solid fa-clipboard-check'
     },
     {
-      count: '2k+',
+      count: '',
       title: 'Total number of daily jobs',
       icon: 'fa-solid fa-clipboard-check'
     },
     {
-      count: '5+',
+      count: '',
       title: 'Total number of admins',
       icon: 'fas fa-gear'
     },
     {
-      count: '1.2k+',
+      count: '',
       title: 'Total number of users',
       icon: 'fa-solid fa-users-gear'
     }
@@ -157,4 +169,41 @@ export class HomeAdminComponent {
       NumberPost: 200
     }
   ];
+
+  ngOnInit(): void {
+    console.log("api");
+    const token = localStorage.getItem('token');
+    console.log("Token from localStorage:", token);
+
+    this.adminService.getArtisansCount().subscribe(count => {
+      this.cards[0].count = count.toString();
+    });
+
+    this.adminService.getCountAnnouncedJobs().subscribe(count => {
+      this.cards[1].count = count.toString();
+    });
+
+    this.adminService.getCompletedJobs().subscribe(count => {
+      this.cards[2].count = count.toString();
+    });
+
+    this.adminService.getCountDailyJobs().subscribe(count => {
+      this.cards[3].count = count.toString();
+    });
+
+    this.adminService.getAdminsCount().subscribe(count => {
+      this.cards[4].count = count.toString();
+    });
+
+    this.adminService.getUserCount().subscribe(count => {
+      this.cards[5].count = count.toString();
+    });
+    /////////////////////////////////////////
+    this.adminService.getMostUsers().subscribe(most =>{
+      console.log(most)
+      this.most=most
+    })
+
+  }
+
 }

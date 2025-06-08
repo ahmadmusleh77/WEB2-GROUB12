@@ -1,97 +1,55 @@
 import { Component, Input } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
-
-interface User {
-  UserName: string;
-  Profession: string;
-  Email: string;
-  Select: string;
-  Reject: string;
-  status?: 'pending' | 'accepted';
-}
+import { NgForOf } from '@angular/common';
+import { sure } from '../../../models/sure';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-manage',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgIf
-  ],
+  imports: [NgForOf],
   templateUrl: './manage.component.html',
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent {
-  @Input() manage: User[] = [
-    {
-      UserName: 'Saleh',
-      Profession: 'Carpentry',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'pending'
-    },
-    {
-      UserName: 'Khaled',
-      Profession: 'Electrician',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'accepted'
-    },
-    {
-      UserName: 'Salman',
-      Profession: 'Carpentry',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'pending'
-    },
-    {
-      UserName: 'sameh',
-      Profession: 'Carpentry',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'pending'
-    },
-    {
-      UserName: 'Khaled',
-      Profession: 'Electrician',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'accepted'
-    },
-    {
-      UserName: 'Salman',
-      Profession: 'Carpentry',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'pending'
-    },
-    {
-      UserName: 'sameh',
-      Profession: 'Carpentry',
-      Email: 'user@example.com',
-      Select: 'Yes',
-      Reject: 'No',
-      status: 'pending'
+  @Input() manages: sure[] = [];
+
+  constructor(private adminService: AdminService) {}
+
+  acceptOffer(user: sure) {
+    if (!user?.user_id) {
+      alert('User ID is missing!');
+      return;
     }
 
-  ];
+    this.adminService.acceptUser(user.user_id).subscribe({
+      next: () => {
 
-  deleteOffer(user  :any) {
-    alert(' reject for'+ user.UserName);
-  }
-  acceptOffer(user  :any) {
-
-   console.log(user)
-    alert(' accepted for'+ user.UserName);
-
- //  this.usrServices.deleteUser(user.id)
-    // إذا بدك تحدث الحالة:
-   // this.manage[index].status = 'accepted';
+        this.manages = this.manages.filter(u => u.user_id !== user.user_id);
+        alert('User accepted successfully ');
+      },
+      error: err => {
+        alert('Failed to accept user: ' + err.message);
+      }
+    });
   }
 
+
+
+  deleteUser(user: sure) {
+    console.log('Trying to delete user:', user);
+    if (!user?.user_id) {
+      alert('User ID is missing!');
+      return;
+    }
+
+    this.adminService.rejectUser(user.user_id).subscribe({
+      next: () => {
+        this.manages = this.manages.filter(u => u.user_id !== user.user_id);
+        alert('User deleted successfully.');
+      },
+      error: err => {
+        alert('Failed to delete user: ' + err.message);
+      }
+    });
+  }
 }

@@ -1,43 +1,28 @@
-<script src="manage.component.ts"></script>
 <div class="container">
-  <h1 class="text-center ">Manage Users</h1>
+  <h1 class="text-center">Manage Users</h1>
 
   <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered align-middle text-center">
       <thead class="table">
       <tr>
         <th class="ene">User Name</th>
-        <th class="ene">Profession</th>
         <th class="ene">Email</th>
-<!--        <th class="ene">Select</th>-->
         <th class="ene">Accept</th>
         <th class="ene">Reject</th>
       </tr>
       </thead>
 
       <tbody>
-      <tr *ngFor="let user of manage; let i = index">
-        <td>{{ user.UserName }}</td>
-        <td>{{ user.Profession }}</td>
-        <td class="text-break">{{ user.Email }}</td>
-<!--        <td>{{ offer.Select }}</td>-->
-
-
+      <tr *ngFor="let user of manages">
+        <td>{{ user.name }}</td>
+        <td class="text-break">{{ user.email }}</td>
         <td>
-          <button
-            *ngIf="user.Select === 'Yes'"
-            class="btn btn-success btn-sm"
-            (click)="acceptOffer(user)">
+          <button class="btn btn-success btn-sm" (click)="acceptOffer(user)">
             Accept
           </button>
         </td>
-
-
         <td>
-          <button
-            *ngIf="user.Reject === 'No'"
-            class="btn btn-danger btn-sm"
-            (click)="deleteOffer(i)">
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">
             Delete
           </button>
         </td>
