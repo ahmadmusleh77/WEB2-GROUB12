@@ -27,9 +27,14 @@
         <td>
           <span class="badge bg-secondary" *ngIf="offer.status === 'pending'">Pending</span>
           <span class="badge bg-success" *ngIf="offer.status === 'accepted'">Accepted</span>
+          <span class="badge bg-danger" *ngIf="offer.status === 'rejected'">Rejected</span>
         </td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="deleteOffer(i)">Cancel</button>
+          <button class="btn btn-danger btn-sm"
+                  (click)="deleteOffer(i)"
+                  *ngIf="offer.status === 'pending' || offer.status === 'rejected'">
+            Cancel
+          </button>
         </td>
       </tr>
       </tbody>

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { JobOwnersService } from '../../services/job-owners.service';
 import { NgForOf } from '@angular/common';
+
 
 @Component({
   selector: 'app-manage-bids-jobowner',
@@ -8,28 +11,62 @@ import { NgForOf } from '@angular/common';
   standalone: true,
   imports: [NgForOf]
 })
-export class ManageBidsJobownerComponent {
+export class ManageBidsJobownerComponent implements OnInit {
 
-  bids = [
-    { username: 'Sami', amount: '100$', startDate: '12/2/2005' },
-    { username: 'Ali', amount: '150$', startDate: '01/3/2006' },
-    { username: 'Lina', amount: '200$', startDate: '20/6/2007' },
-    { username: 'Sara', amount: '120$', startDate: '15/7/2008' }
-  ];
-
+  bids: any[] = [];
   offerJobowner: any[] = [];
+  jobId!: number;
+
+  constructor(
+    private route: ActivatedRoute,
+    private jobOwnersService: JobOwnersService
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.jobId = +params['job_id'];
+      this.loadBids();
+    });
+  }
+
+  loadBids(): void {
+    this.jobOwnersService.getJobPostBids(this.jobId).subscribe({
+      next: (response) => {
+       this.bids = response.data;
+      },
+      error: (err) => {
+        console.error('Failed to load bids', err);
+      }
+    });
+  }
 
   acceptBid(bid: any) {
-    this.offerJobowner.push(bid);
-    this.bids = this.bids.filter(b => b !== bid);
-    alert(`Bid from ${bid.username} accepted and moved to offers.`);
+    this.jobOwnersService.acceptBid(bid.id).subscribe({
+      next: () => {
+        this.offerJobowner.push(bid);
+        this.bids = this.bids.filter(b => b !== bid);
+        alert(`Bid from ${bid.user_name} accepted and moved to offers.`);
+      },
+      error: (err) => {
+        console.error('Failed to accept bid', err);
+        alert('Failed to accept bid.');
+      }
+    });
   }
 
   rejectBid(bid: any) {
-    const confirmed = confirm(`Are you sure you want to reject the bid from ${bid.username}?`);
+    const confirmed = confirm(`Are you sure you want to reject the bid from ${bid.user_name}?`);
     if (confirmed) {
-      this.bids = this.bids.filter(b => b !== bid);
-      alert(`Bid from ${bid.username} rejected and removed.`);
+      this.jobOwnersService.rejectBid(bid.id).subscribe({
+        next: () => {
+          this.bids = this.bids.filter(b => b !== bid);
+          alert(`Bid from ${bid.user_name} rejected and removed.`);
+        },
+        error: (err) => {
+          console.error('Failed to reject bid', err);
+          alert('Failed to reject bid.');
+        }
+      });
     }
   }
 }

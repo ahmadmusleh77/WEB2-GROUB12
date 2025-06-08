@@ -1,108 +1,124 @@
-<div class="center-container">
-  <div class="container">
-    <h1>Create Account</h1>
-    <p>Join us and manage your profile!</p>
+<form (ngSubmit)="register()" #registerForm="ngForm">
+  <div class="center-container">
+    <div class="container">
+      <h1>Create Account</h1>
+      <p>Join us and manage your profile!</p>
+      
+      <!-- Error message with nice styling -->
+      <div *ngIf="errorMessage" class="error-message">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+      
+      <!-- Success message with nice styling -->
+      <div *ngIf="successMessage" class="success-message">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>{{ successMessage }}</span>
+      </div>
 
-    <div class="account-type-group">
-      <label for="userType">Choose the account type</label>
-      <select name="userType" id="userType" [(ngModel)]="userType">
-        <option value="worker">job owner</option>
-        <option value="owner">job search</option>
-        <option value="admin">Admin</option>
-      </select>
+      <div class="account-type-group">
+        <label for="userType">Choose the account type</label>
+        <select name="userType" id="userType" [(ngModel)]="userType" required>
+          <option value="jobowner">job owner</option>
+          <option value="artisan">job search</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="username-group">
+        <i class="fa-solid fa-user"></i>
+        <input
+          type="text"
+          name="username"
+          placeholder="Choose a username"
+          [(ngModel)]="username"
+          required
+          #usernameModel="ngModel"
+        />
+      </div>
+
+      <div class="email-group">
+        <i class="fa-regular fa-envelope"></i>
+        <input
+          type="email"
+          name="email"
+          placeholder="XXXX@gmail.com"
+          [(ngModel)]="emailAddress"
+          required
+          #emailModel="ngModel"
+        />
+      </div>
+
+      <div class="password-group" style="position: relative;">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          name="password"
+          placeholder="Create a password"
+          [(ngModel)]="userPassword"
+          required
+          #passwordModel="ngModel"
+        />
+        <i
+          class="fa-solid"
+          [class.fa-eye]="!passwordVisible"
+          [class.fa-eye-slash]="passwordVisible"
+          (click)="togglePasswordVisibility('password')"
+          style="right: 10px; cursor:pointer; position: absolute; top: 50%; transform: translateY(-50%); margin-left: -30px;"
+        ></i>
+      </div>
+
+      <div class="confirm-password-group">
+        <i class="fa-solid fa-lock"></i>
+        <input
+          [type]="confirmPasswordVisible ? 'text' : 'password'"
+          name="confirmPassword"
+          placeholder="Re-enter your password"
+          [(ngModel)]="userConfirmPassword"
+          required
+          #confirmPasswordModel="ngModel"
+        />
+        <i
+          class="fa-solid"
+          [class.fa-eye]="!confirmPasswordVisible"
+          [class.fa-eye-slash]="confirmPasswordVisible"
+          (click)="togglePasswordVisibility('confirmPassword')"
+          style="right: 10px; cursor:pointer;"
+        ></i>
+      </div>
+
+      <div class="terms-checkbox">
+        <input
+          type="checkbox"
+          name="termsAccepted"
+          [(ngModel)]="termsAccepted"
+          id="termsCheckbox"
+          required
+        />
+        <label for="termsCheckbox">I agree with Terms & Conditions</label>
+      </div>
+
+      <button
+        class="register-button"
+        type="submit"
+      >
+        Register
+      </button>
+
+      <p class="login-link">
+        Already registered?
+        <a routerLink="/login" style="color: #ff5722;">Log In</a>
+      </p>
+
+      <button class="google-social-button" type="button">
+        <i class="fa-brands fa-google" style="color: #ff5722; margin-right: 10px;"></i>
+        Continue with Google
+      </button>
+
+      <button class="facebook-social-button" type="button">
+        <i class="fa-brands fa-facebook" style="color: #ff5722; margin-right: 10px;"></i>
+        Continue with Facebook
+      </button>
     </div>
-
-    <div class="username-group">
-      <i class="fa-solid fa-user"></i>
-      <input
-        type="text"
-        name="username"
-        placeholder="Choose a username"
-        [(ngModel)]="username"
-      />
-    </div>
-
-    <div class="email-group">
-      <i class="fa-regular fa-envelope"></i>
-      <input
-        type="email"
-        name="email"
-        placeholder="XXXX@gmail.com"
-        [(ngModel)]="email"
-      />
-    </div>
-
-    <div class="password-group">
-      <i class="fa-solid fa-lock"></i>
-      <input
-        [type]="passwordVisible ? 'text' : 'password'"
-        name="password"
-        placeholder="Create a password"
-        [(ngModel)]="password"
-      />
-      <i
-        class="fa-solid"
-        [class.fa-eye]="!passwordVisible"
-        [class.fa-eye-slash]="passwordVisible"
-        (click)="togglePasswordVisibility('password')"
-        style="right: 10px;"
-      ></i>
-    </div>
-
-    <div class="confirm-password-group">
-      <i class="fa-solid fa-lock"></i>
-      <input
-        [type]="confirmPasswordVisible ? 'text' : 'password'"
-        name="confirmPassword"
-        placeholder="Re-enter your password"
-        [(ngModel)]="confirmPassword"
-      />
-      <i
-        class="fa-solid"
-        [class.fa-eye]="!confirmPasswordVisible"
-        [class.fa-eye-slash]="confirmPasswordVisible"
-        (click)="togglePasswordVisibility('confirmPassword')"
-        style="right: 10px;"
-      ></i>
-    </div>
-
-    <div class="terms-checkbox">
-      <input
-        type="checkbox"
-        name="termsAccepted"
-        [(ngModel)]="termsAccepted"
-        id="termsCheckbox"
-      />
-      <label for="termsCheckbox">I agree with Terms & Conditions</label>
-    </div>
-
-    <button
-      class="register-button"
-      (click)="register()"
-      [disabled]="
-        username.trim() === '' ||
-        email.trim() === '' ||
-        password.trim() === '' ||
-        confirmPassword.trim() === '' ||
-        password !== confirmPassword
-      "
-    >
-      Register
-    </button>
-
-    <p class="login-link">
-      Already registered?
-      <a routerLink="/login" style="color: #ff5722;">Log In</a>
-    </p>
-
-    <button class="google-social-button">
-      <i class="fa-brands fa-google" style="color: #ff5722; margin-right: 10px;"></i>
-      Continue with Google
-    </button>
-
-    <button class="facebook-social-button">
-      <i class="fa-brands fa-facebook" style="color: #ff5722; margin-right: 10px;"></i>
-      Continue with Facebook
-    </button>
   </div>
-</div>
+</form>

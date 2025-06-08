@@ -3,10 +3,11 @@ import { Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { LoginComponent } from './auth/login/login.component';
+import { authGuard, roleGuard } from './guards/auth.guard';
 import { CreateAccountComponent } from './auth/create-account/create-account.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
-import { NewPasswordComponent } from './auth/new-password/new-password.component';
+// NewPasswordComponent removed
 import { ArtisansComponent } from './artisans/artisans.component';
 import { HomeComponent } from './artisans/home/home.component';
 import { ChatComponent } from './artisans/chat-artisan/chat.component';
@@ -43,8 +44,8 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'create-account', component: CreateAccountComponent },
       { path: 'forget-password', component: ForgotPasswordComponent },
-      { path: 'verification', component: OtpVerificationComponent },
-      { path: 'new-password', component: NewPasswordComponent },
+      { path: 'otp-verification', component: OtpVerificationComponent },
+      // New password route removed
       { path:'category',component: CategoryComponent},
     ],
 
@@ -52,6 +53,7 @@ export const routes: Routes = [
   {
     path: 'artisans-dashboard',
     component: ArtisansComponent,
+    canActivate: [authGuard, roleGuard([2])], // Role ID 2 for artisans
     children: [
       { path: '', redirectTo: 'home-artisan', pathMatch: 'full' },
       { path: 'home-artisan', component: HomeComponent },
@@ -63,9 +65,9 @@ export const routes: Routes = [
     ]
   },
   {
-
     path: 'admin-dashboard',
     component: AdminComponent,
+    canActivate: [authGuard, roleGuard([1])], // Role ID 1 for admin
     children: [
       { path: '', redirectTo: 'home-admin', pathMatch: 'full' },
       { path: 'home-admin', component: HomeAdminComponent },
@@ -77,17 +79,19 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsComponent }
     ]
   },
+
   {
     path: 'job-owner-dashboard',
-    component :JobOwnerComponent,
-    children :[
+    component: JobOwnerComponent,
+    canActivate: [authGuard, roleGuard([3])], // Role ID 3 for job owner
+    children: [
       {path: '', redirectTo: 'home-job-owner', pathMatch: 'full'},
       { path: 'home-job-owner', component: HomeJobownersComponent },
       {path: 'offer-job-owner',component: OfferJobownerComponent},
       {path: 'creat-posts',component: CreatePostComponent},
       {path: 'edit-post',component: EditPostComponent},
-      {path:'manage-bids-job-owner',component: ManageBidsJobownerComponent},
-      {path:'edit-post',component: EditPostComponent},
+      { path: 'manage-bids-job-owner/:job_id', component: ManageBidsJobownerComponent},
+      { path: 'edit-post/:id', component: EditPostComponent },
       {path:'profile-job-owner',component:AccountProfileComponent},
       {path:'settings-job-owner',component:SettingsComponent},
       { path: 'chat-job-owner', component:ChatJobOwnerComponent},

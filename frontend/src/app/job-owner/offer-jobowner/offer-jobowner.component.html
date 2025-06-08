@@ -23,8 +23,9 @@
         <td>{{ offer.clientName }}</td>
         <td>{{ offer.price }} $</td>
         <td>
-          <span class="badge bg-success" *ngIf="offer.status === 'completed'">Completed</span>
-          <span class="badge bg-secondary" *ngIf="offer.status === 'pending'">Pending</span>
+          <span class="badge bg-success" *ngIf="offer.status === 'Completed'">Completed</span>
+          <span class="badge bg-success" *ngIf="offer.status === 'In Progress'">Pending</span>
+          <span class="badge bg-secondary" *ngIf="offer.status === 'Pending'">Pending</span>
         </td>
         <td>
           <div class="rating">

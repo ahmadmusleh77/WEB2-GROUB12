@@ -1,61 +1,65 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ArtisansService } from '../../../services/artisans.service';
 
 interface Offer {
   id: number;
   jobTitle: string;
   clientName: string;
   price: number;
-  status: 'in_progress' | 'completed' | 'pending';
+  status: string;
 }
 
 @Component({
   selector: 'app-accepted-offers',
+  standalone: true,
+  imports: [NgForOf, NgIf, FormsModule],
   templateUrl: './accepted-offers.component.html',
-  imports: [
-    NgForOf,
-    NgIf,
-    FormsModule
-  ],
   styleUrls: ['./accepted-offers.component.css']
 })
-export class AcceptedOffersComponent {
-  @Input() acceptedOffers: Offer[] = [
-    {
-      id: 1,
-      jobTitle: 'Plumbing Service',
-      clientName: 'Ahmad Musleh',
-      price: 1500,
-      status: 'in_progress'
-    },
-    {
-      id: 2,
-      jobTitle: 'Electrical Wiring',
-      clientName: 'Saleh',
-      price: 2500,
-      status: 'completed'
-    },
-    {
-      id: 3,
-      jobTitle: 'House Painting',
-      clientName: 'Karam',
-      price: 3500,
-      status: 'pending'
-    },
-    {
-      id: 4,
-      jobTitle: 'Roof Repair',
-      clientName: 'Masa',
-      price: 1800,
-      status: 'in_progress'
-    }
-  ];
+export class AcceptedOffersComponent implements OnInit {
+  acceptedOffers: Offer[] = [];
 
-  updateStatus(id: number, newStatus: Offer['status']): void {
+  constructor(private artisansService: ArtisansService) {}
+
+  ngOnInit(): void {
+    this.fetchAcceptedOffers();
+  }
+
+  fetchAcceptedOffers(): void {
+    this.artisansService.getAcceptedOffers().subscribe({
+      next: (res) => {
+        if (res && res.offers) {
+          this.acceptedOffers = res.offers.map((offer: any) => ({
+            id: offer.job_id,
+            jobTitle: offer.job_title,
+            clientName: offer.client_name,
+            price: offer.price,
+            status: offer.current_status
+          }));
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching accepted offers:', err);
+      }
+    });
+  }
+
+  updateStatus(id: number, newStatus: string): void {
     const offer = this.acceptedOffers.find(o => o.id === id);
     if (offer) {
       offer.status = newStatus;
+
+      this.artisansService.updateJobStatus(id, newStatus).subscribe({
+        next: () => {
+          console.log(`Status updated for job ${id}`);
+          this.fetchAcceptedOffers();
+        },
+        error: (err) => {
+          console.error(`Failed to update status for job ${id}:`, err);
+        }
+      });
     }
   }
 }
