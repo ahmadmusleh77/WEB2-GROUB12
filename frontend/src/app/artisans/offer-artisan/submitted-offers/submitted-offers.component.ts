@@ -8,7 +8,7 @@ interface Offer {
   clientName: string;
   price: number;
   date: string;
-  status: 'pending' | 'accepted';
+  status: 'pending' | 'accepted' | 'rejected';
 }
 
 @Component({
@@ -31,15 +31,19 @@ export class SubmittedOffersComponent implements OnInit {
     this.artisansService.getSubmittedOffers().subscribe({
       next: (res) => {
         if (res && res.offers) {
-          this.submittedOffers = res.offers.map((offer: any) => ({
-            bidId: offer.bid_id,
-
-            jobTitle: offer.job_title,
-            clientName: offer.client_name,
-            price: offer.price,
-            date: offer.submission_date,
-            status: offer.status.toLowerCase()
-          }));
+          this.submittedOffers = res.offers.map((offer: any) => {
+            const status = offer.status.toLowerCase();
+            return {
+              bidId: offer.bid_id,
+              jobTitle: offer.job_title,
+              clientName: offer.client_name,
+              price: offer.price,
+              date: offer.submission_date,
+              status: status === 'pending' || status === 'accepted' || status === 'rejected'
+                ? status
+                : 'pending'
+            };
+          });
         }
       },
       error: (err) => {
@@ -50,14 +54,11 @@ export class SubmittedOffersComponent implements OnInit {
 
   deleteOffer(index: number): void {
     const offer = this.submittedOffers[index];
-    console.log('Trying to delete:', offer);
-
     if (!offer) return;
 
     if (confirm('Are you sure you want to cancel this offer?')) {
       this.artisansService.cancelBid(offer.bidId).subscribe({
         next: () => {
-          console.log('Deleted:', offer.bidId);
           this.submittedOffers.splice(index, 1);
           alert('Offer cancelled successfully!');
         },
@@ -68,5 +69,4 @@ export class SubmittedOffersComponent implements OnInit {
       });
     }
   }
-
 }
