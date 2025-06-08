@@ -1,44 +1,39 @@
 <div class="container">
   <div class="request-grid">
     <div class="card" *ngFor="let offer of paginatedOffers; let i = index">
-
-
       <div class="card-header">
-        <h3>{{ offer.name }}</h3>
-        <p class="job-title">{{ offer.jobTitle }}</p>
+        <h3>{{ offer.user.name }}</h3>
+        <p class="job-title">{{ offer.title }}</p>
       </div>
       <div class="card-body">
-        <p class="card-location"> {{ offer.location }}</p>
+        <p class="card-location">{{ offer.location }}</p>
         <p class="card-description">{{ offer.description }}</p>
-        <p class="card-price"> {{ offer.price }} SAR</p>
-
+        <p class="card-price">{{ offer.budget }} SAR</p>
       </div>
       <div class="dropdown ml-3">
-        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
           Read more
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" routerLink="/admin-dashboard/manage-bids">manage bids</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/admin-dashboard/manage-bids', offer.job_id]">manage bids</a>
+          </li>
         </ul>
       </div>
       <div class="card-footer">
-        <button (click)="deleteOffer(i)" >Delete Offer</button>
+        <button (click)="deleteOffer(i)">Delete Offer</button>
       </div>
     </div>
   </div>
-
 
   <nav *ngIf="totalPages > 1" aria-label="Page navigation" class="d-flex justify-content-center mt-4">
     <ul class="pagination">
       <li class="page-item" [class.disabled]="currentPage === 1">
         <button class="page-link" (click)="previousPage()">Previous</button>
       </li>
-
       <li class="page-item disabled">
         <span class="page-link">Page {{ currentPage }} of {{ totalPages }}</span>
       </li>
-
       <li class="page-item" [class.disabled]="currentPage === totalPages">
         <button class="page-link" (click)="nextPage()">Next</button>
       </li>

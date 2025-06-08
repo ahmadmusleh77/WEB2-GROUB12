@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgForOf} from '@angular/common';
+import {Most} from '../../../models/most';
 interface User {
   clientName: string;
   Email: string;
@@ -15,5 +16,6 @@ interface User {
 })
 
 export class TabelReport2Component {
-  @Input() information: User[] = [];  // هنا نستخدم Input لتلقي البيانات من HomeComponent
+ // @Input() information: User[] = [];  // هنا نستخدم Input لتلقي البيانات من HomeComponent
+  @Input() information: Most[] = [];
 }

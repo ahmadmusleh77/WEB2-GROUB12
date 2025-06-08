@@ -73,7 +73,8 @@ export const routes: Routes = [
       { path: 'home-admin', component: HomeAdminComponent },
       { path: 'all-post-admin', component: UserAdminComponent },
       { path: 'manage-user', component: ManageUsersComponent },
-      { path: 'manage-bids', component: ManageBidsComponent },
+      { path: 'manage-bids/:id', component: ManageBidsComponent }
+      ,
       { path: 'profile', component: AccountProfileComponent },
       { path: 'settings', component: SettingsComponent }
     ]

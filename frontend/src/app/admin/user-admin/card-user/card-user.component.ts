@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {sure} from '../../../models/sure';
+import {post} from '../../../models/post';
+import {AdminService} from '../../../services/admin.service';
 
 @Component({
   selector: 'app-card-user',
@@ -13,31 +16,23 @@ import {RouterLink} from '@angular/router';
   styleUrls: ['./card-user.component.css']
 })
 export class CardUserComponent {
+  @Input() MPost: post[] = [];
 
-  artisanOffers = [
-    { name: 'Mohammed Al-Qahtani', jobTitle: 'Plumber', price: 250, location: 'Riyadh', description: 'Experienced plumber with 5 years in fixing residential plumbing issues.' },
-    { name: 'Sara Al-Harbi', jobTitle: 'Electrician', price: 300, location: 'Jeddah', description: 'Professional in electrical installations and repairs.' },
-    { name: 'Ahmed Al-Mutairi', jobTitle: 'Carpenter', price: 400, location: 'Dammam', description: 'Expert in woodwork, furniture assembly, and repairs.' },
-    { name: 'Layla Al-Dossari', jobTitle: 'Gardener', price: 150, location: 'Mecca', description: 'Gardening services including trimming, planting, and lawn care.' },
-    { name: 'Fahad Al-Shammari', jobTitle: 'Painter', price: 350, location: 'Medina', description: 'Interior and exterior painting with modern tools and techniques.' },
-    { name: 'Alaa Al-Rashid', jobTitle: 'Mechanic', price: 500, location: 'Tabuk', description: 'Skilled in vehicle diagnostics and repairs.' },
-    { name: 'Noura Al-Saleh', jobTitle: 'Cleaner', price: 200, location: 'Hail', description: 'Thorough cleaning services for homes and offices.' },
-    { name: 'Khaled Al-Fahad', jobTitle: 'Driver', price: 100, location: 'Abha', description: 'Professional driver available for daily commutes.' },
-    { name: 'Mona Al-Zahrani', jobTitle: 'Tailor', price: 180, location: 'Najran', description: 'Expert in tailoring traditional and modern garments.' },
-    { name: 'Saad Al-Ahmari', jobTitle: 'Technician', price: 300, location: 'Al Khobar', description: 'IT support and maintenance specialist.' }
+  constructor(private router: Router, private adminService : AdminService) {}
 
-  ];
-
+  goToManageBids(id: number) {
+    this.router.navigate(['/admin-dashboard/manage-bids', id]);
+  }
   currentPage = 1;
   offersPerPage = 8;
 
   get paginatedOffers() {
     const start = (this.currentPage - 1) * this.offersPerPage;
-    return this.artisanOffers.slice(start, start + this.offersPerPage);
+    return this.MPost.slice(start, start + this.offersPerPage);
   }
 
   get totalPages() {
-    return Math.ceil(this.artisanOffers.length / this.offersPerPage);
+    return Math.ceil(this.MPost.length / this.offersPerPage);
   }
 
   nextPage() {
@@ -54,12 +49,22 @@ export class CardUserComponent {
 
   deleteOffer(indexInPage: number) {
     const globalIndex = (this.currentPage - 1) * this.offersPerPage + indexInPage;
-    this.artisanOffers.splice(globalIndex, 1);
+    const postId = this.MPost[globalIndex].job_id;
 
+    if (!confirm('Are you sure you want to delete this post?')) return;
 
-    if (this.currentPage > this.totalPages) {
-      this.currentPage = this.totalPages;
-    }
+    this.adminService.deletePost(postId).subscribe({
+      next: () => {
+        this.MPost.splice(globalIndex, 1);
+        if (this.currentPage > this.totalPages) {
+          this.currentPage = this.totalPages;
+        }
+      },
+      error: (err) => {
+        alert('Failed to delete post: ' + err.message);
+        console.error(err);
+      }
+    });
   }
 
 }
