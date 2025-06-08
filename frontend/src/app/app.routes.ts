@@ -78,6 +78,7 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsComponent }
     ]
   },
+
   {
     path: 'job-owner-dashboard',
     component: JobOwnerComponent,

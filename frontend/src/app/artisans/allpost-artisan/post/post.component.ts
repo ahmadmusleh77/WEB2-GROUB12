@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgForOf } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 import { ArtisansService } from '../../../services/artisans.service';
 import { CommonModule } from '@angular/common';
-
+import { ChatService } from '../../../services/chat-service.service';
+import {Router, RouterLink} from '@angular/router';
+import { ElementRef } from '@angular/core';
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -15,6 +17,7 @@ import { CommonModule } from '@angular/common';
 
     FilterComponent,
     CommonModule,
+    RouterLink,
 
 
   ],
@@ -22,6 +25,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  @ViewChild('detailsModalRef') detailsModalRef!: ElementRef;
+
 
   conversionItems: any[] = [];
   filteredItems: any[] = [];
@@ -34,16 +39,24 @@ export class PostComponent implements OnInit {
     startDate: ''
   };
 
-  constructor(private artisansService: ArtisansService) {}
+  constructor(
+    private artisansService: ArtisansService,
+    private chatService: ChatService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchPosts();
   }
 
   fetchPosts(): void {
+
+
     this.artisansService.getPosts().subscribe(
       (data: any[]) => {
+
         this.conversionItems = data
+
           .filter(item => item.status === 'active')
           .map(item => ({
             title: item.title,
@@ -56,11 +69,16 @@ export class PostComponent implements OnInit {
             ownerName: item.user?.name || 'Unknown',
             ownerId: item.user_id,
             jobId: item.job_id
-          }));
+          }))
 
-        this.currentPage = 1;
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        console.log('Before filter:', data.length);
+        const activeItems = data.filter(item => item.status === 'active');
+        console.log('After filter:', activeItems.length);
 
         this.filteredItems = [...this.conversionItems];
+        this.currentPage = 1;
+        console.log('Data received:', data);
 
       },
       error => {
@@ -68,6 +86,33 @@ export class PostComponent implements OnInit {
       }
     );
   }
+
+
+
+  sendAndNavigateInstant(ownerId: number, ownerName: string) {
+    const modalInstance = (window as any).bootstrap.Modal.getInstance(this.detailsModalRef.nativeElement);
+    if (modalInstance) modalInstance.hide();
+
+    const welcomeMessage = {
+      content: `Hello ${ownerName}, I'm interested in your post.`,
+      receiver_id: ownerId
+    };
+
+    this.chatService.sendMessage(welcomeMessage).subscribe({
+      next: () => {
+        this.router.navigate(['/artisans-dashboard/chat-artisan'], {
+          queryParams: { receiver_id: ownerId }
+        });
+      },
+      error: (err) => {
+        console.error('Error sending welcome message:', err);
+        this.router.navigate(['/artisans-dashboard/chat-artisan'], {
+          queryParams: { receiver_id: ownerId }
+        });
+      }
+    });
+  }
+
 
 
   get totalPages(): number {
@@ -99,11 +144,12 @@ export class PostComponent implements OnInit {
           description: item.description,
           date: item.deadline,
           price: `${item.budget}$`,
+
           image: item.image,
           additionalImage: item.image,
           ownerName: item.user?.name || 'Unknown',
           ownerId: item.user_id
-        }));
+      }));
 
         this.currentPage = 1;
         this.isLoading = false;
@@ -131,23 +177,20 @@ export class PostComponent implements OnInit {
   submitRequest() {
     const bidData = {
       job_id: this.selectedItem?.jobId,
-
       user_name: this.formData.userName,
-      price_estimate: this.formData.amount,
+      price_estimate: Number(this.formData.amount),
       timeline: this.formData.startDate,
       status: 'Pending'
     };
 
+    console.log('📤 bidData sent:', bidData);
+
     this.artisansService.sendBid(bidData).subscribe({
       next: (res) => {
-        console.log('Bid sent:', res);
         alert('Your request has been submitted successfully!');
         this.formData = { userName: '', amount: '', startDate: '' };
-      },
-      error: (err) => {
-        console.error('Error sending bid:', err);
-        alert('An error occurred while submitting your request.');
       }
     });
   }
+
 }

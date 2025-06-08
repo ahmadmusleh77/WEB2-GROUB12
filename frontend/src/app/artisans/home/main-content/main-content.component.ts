@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { ArtisansService } from '../../../services/artisans.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ChatService } from '../../../services/chat-service.service';
 
 @Component({
   selector: 'app-main-content',
   standalone: true,
   imports: [NgForOf, FormsModule, RouterLink, HttpClientModule],
   templateUrl: './main-content.component.html',
-  styleUrl: './main-content.component.css'
+  styleUrl: './main-content.component.css',
 })
 export class MainContentComponent implements OnInit {
-
+  @ViewChild('detailsModalRef') detailsModalRef!: ElementRef;
   conversionItems: any[] = [];
   selectedItem: any = null;
 
@@ -23,16 +24,43 @@ export class MainContentComponent implements OnInit {
     startDate: ''
   };
 
-  constructor(private artisansService: ArtisansService) {}
+  constructor(
+    private artisansService: ArtisansService,
+    private chatService: ChatService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getBidsFromApi();
+  }
+  sendAndNavigateInstant(ownerId: number, ownerName: string) {
+    const modalInstance = (window as any).bootstrap.Modal.getInstance(this.detailsModalRef.nativeElement);
+    if (modalInstance) modalInstance.hide();
+
+    const welcomeMessage = {
+      content: `Hello ${ownerName}, I'm interested in your post.`,
+      receiver_id: ownerId
+    };
+
+    this.chatService.sendMessage(welcomeMessage).subscribe({
+      next: () => {
+        this.router.navigate(['/artisans-dashboard/chat-artisan'], {
+          queryParams: { receiver_id: ownerId }
+        });
+      },
+      error: (err) => {
+        console.error('Error sending welcome message:', err);
+        this.router.navigate(['/artisans-dashboard/chat-artisan'], {
+          queryParams: { receiver_id: ownerId }
+        });
+      }
+    });
   }
 
   getBidsFromApi() {
     this.artisansService.getPosts().subscribe({
       next: (response) => {
-        this.conversionItems = response.map((item: any) => ({
+        this.conversionItems = response.slice(0, 8).map((item: any) => ({
           title: item.title,
           location: item.location,
           description: item.description,
@@ -71,10 +99,6 @@ export class MainContentComponent implements OnInit {
         console.log('Bid sent:', res);
         alert('Your request has been submitted successfully!');
         this.formData = { userName: '', amount: '', startDate: '' };
-      },
-      error: (err) => {
-        console.error('Error sending bid:', err);
-        alert('An error occurred while submitting your request.');
       }
     });
   }
