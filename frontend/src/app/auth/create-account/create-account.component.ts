@@ -26,7 +26,7 @@ export class CreateAccountComponent implements OnInit {
   successMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-  
+
   ngOnInit(): void {
     this.loadStoredData();
   }
@@ -114,15 +114,15 @@ export class CreateAccountComponent implements OnInit {
         next: (res) => {
           this.isLoading = false;
           this.successMessage = 'Account created successfully! You will be redirected to verify your email';
-          
+
           // Store email for OTP verification (only in browser environment)
           if (typeof window !== 'undefined' && window.localStorage) {
             localStorage.setItem('verificationEmail', this.emailAddress);
-            
+
             // Store user data temporarily
             localStorage.setItem('tempUserData', JSON.stringify(res.user));
           }
-          
+
           // Redirect to OTP verification page after a short delay
           setTimeout(() => {
             this.router.navigate(['/otp-verification']);
@@ -131,30 +131,30 @@ export class CreateAccountComponent implements OnInit {
         error: (err) => {
           this.isLoading = false;
           console.error('Registration error:', err);
-          
+
           if (err.status === 0) {
             this.errorMessage = 'Cannot connect to the server. Please check your internet connection.';
-          } 
+          }
           // Check for duplicate email error
-          else if (err.error && err.error.message && 
-              (err.error.message.includes('email') || 
-               err.error.message.toLowerCase().includes('already') || 
-               err.error.message.includes('already exists') || 
+          else if (err.error && err.error.message &&
+              (err.error.message.includes('email') ||
+               err.error.message.toLowerCase().includes('already') ||
+               err.error.message.includes('already exists') ||
                err.error.message.includes('in use'))) {
             this.errorMessage = 'This email is already registered. Please login or use a different email address.';
           }
           else if (err.error && err.error.message) {
             this.errorMessage = err.error.message;
-          } 
+          }
           else if (err.error && typeof err.error === 'object') {
             // Handle validation errors
             const errorMessages = [];
             for (const key in err.error) {
               if (Array.isArray(err.error[key])) {
                 // Check if this is an email already exists error
-                if (key === 'email' && err.error[key].some(msg => 
-                    msg.includes('already') || 
-                    msg.includes('exists') || 
+                if (key === 'email' && err.error[key].some(msg =>
+                    msg.includes('already') ||
+                    msg.includes('exists') ||
                     msg.includes('in use'))) {
                   this.errorMessage = 'This email is already registered. Please login or use a different email address.';
                   return;
@@ -163,7 +163,7 @@ export class CreateAccountComponent implements OnInit {
               }
             }
             this.errorMessage = errorMessages.join('\n') || 'An error occurred while creating the account';
-          } 
+          }
           else {
             this.errorMessage = 'An error occurred while creating the account';
           }

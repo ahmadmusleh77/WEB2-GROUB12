@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
 export class ArtisansService {
 
   private apiUrl = 'http://127.0.0.1:8000/api';
-  private testToken =localStorage.getItem('')
 
   constructor(private http: HttpClient) {}
 
-
   private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    console.log(' Token:', token);
     return new HttpHeaders({
-      'Authorization': `Bearer ${this.testToken}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'
     });
   }
+
 
   getPosts(): Observable<any> {
     return this.http.get(`${this.apiUrl}/artisan/bids`, { headers: this.getAuthHeaders() });
@@ -29,16 +30,12 @@ export class ArtisansService {
   }
 
   getSubmittedOffers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/artsisan/submitted-offers`, { headers: this.getAuthHeaders() });
+    return this.http.get(`${this.apiUrl}/artisan/submitted-offers`, { headers: this.getAuthHeaders() });
   }
 
   cancelBid(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/artisan/${id}`, { headers: this.getAuthHeaders() });
   }
-
-
-
-
 
   getAcceptedOffers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/offers/accepted`, { headers: this.getAuthHeaders() });
@@ -54,20 +51,8 @@ export class ArtisansService {
 
 
 
-
-
-  getChatContacts(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/chat/contacts/${userId}`, { headers: this.getAuthHeaders() });
-  }
-
-  sendMessage(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/chat/send`, data, { headers: this.getAuthHeaders() });
-  }
-
   filterJobs(filters: any): Observable<any> {
     const cleanedFilters: any = {};
-
-
     Object.keys(filters).forEach(key => {
       const value = filters[key];
       if (value !== null && value !== undefined && value !== '') {

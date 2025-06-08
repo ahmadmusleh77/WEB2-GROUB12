@@ -20,7 +20,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailsModal" #detailsModalRef tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -33,10 +34,19 @@
           <img [src]="selectedItem?.image" alt="Image" class="custom-img " />
           <img [src]="selectedItem?.additionalImage" alt="Additional Image" class="custom-img " />
         </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <button
+              (click)="sendAndNavigateInstant(selectedItem?.ownerId, selectedItem?.ownerName)"
+              class="btn text-white shadow-sm rounded-circle d-flex justify-content-center align-items-center"
+              style="background-color: #ff6200; width: 45px; height: 45px;"  title="Send message to the owner">
+              <i class="fa-solid fa-comments fs-5"></i>
+            </button>
+          </div>
+        </div>
         <p class="post-by"><strong>Posted by:</strong>
           <a [routerLink]="['/profile', selectedItem?.ownerId]" class="owner-link"  title="Profile">
             {{ selectedItem?.ownerName }}
-
           </a>
         </p>
         <p><strong>Location:</strong> {{ selectedItem?.location }}</p>
@@ -63,8 +73,11 @@
             <input type="date" id="startDate" class="form-control" [(ngModel)]="formData.startDate" name="startDate" required />
           </div>
 
-          <div class="submit-btn-container">
-            <button type="submit" class="btn btn-primary">Submit Request</button>
+          <div class="d-flex justify-content-start align-items-center gap-3 mb-3 flex-wrap">
+            <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm rounded-pill">
+              <i class="fa-solid fa-paper-plane me-2"></i>
+              Submit Request
+            </button>
           </div>
         </form>
       </div>

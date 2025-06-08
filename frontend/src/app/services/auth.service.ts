@@ -22,12 +22,12 @@ export class AuthService {
   login(data: { email: string; password: string; userType?: string }): Observable<any> {
     // تأكد من أن userType موجود في الطلب
     const loginData = { ...data };
-    
+
     // إذا كان userType غير محدد أو فارغًا، قم بإزالته من الطلب
     if (!loginData.userType) {
       delete loginData.userType;
     }
-    
+
     console.log('Login data being sent:', loginData);
     return this.http.post(`${this.apiUrl}/login`, loginData);
   }
