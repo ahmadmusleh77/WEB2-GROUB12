@@ -2,15 +2,9 @@
   <div class="settings-header">
     <h2>Settings</h2>
     <div class="tabs">
-      <span class="tab" [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">
-        Profile Info
-      </span>
-      <span class="tab" [class.active]="activeTab === 'account'" (click)="activeTab = 'account'">
-        Account Settings
-      </span>
-      <span class="tab" [class.active]="activeTab === 'background'" (click)="activeTab = 'background'">
-        Background
-      </span>
+      <span class="tab" [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">Profile Info</span>
+      <span class="tab" [class.active]="activeTab === 'account'" (click)="activeTab = 'account'">Account Settings</span>
+      <span class="tab" [class.active]="activeTab === 'background'" (click)="activeTab = 'background'">Background</span>
     </div>
   </div>
 
@@ -29,11 +23,22 @@
             <option value="">Select</option>
             <option>Male</option>
             <option>Female</option>
-            <option>Other</option>
           </select>
         </div>
         <div class="field"><label>About:</label><textarea [(ngModel)]="profileInfo.about"></textarea></div>
-        <div class="field"><label>Languages:</label><input [(ngModel)]="profileInfo.languages" /></div>
+        <div class="field">
+          <label>Languages:</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+            <span *ngFor="let lang of profileInfo.languages; let i = index"
+                  style="background-color: #f1f1f1; border-radius: 20px; padding: 6px 12px; display: flex; align-items: center; font-size: 14px;">
+              {{ lang }}
+              <button (click)="removeLanguage(i)" style="margin-left: 8px; background: none; border: none; color: #ff4d4d; cursor: pointer;">
+                Delete
+              </button>
+            </span>
+          </div>
+          <input [(ngModel)]="profileInfo.newLanguage" (keyup.enter)="addLanguage()" placeholder="Type and press enter" />
+        </div>
       </div>
     </div>
 
@@ -48,14 +53,6 @@
             <option>Public</option>
             <option>Private</option>
             <option>Only Me</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Language:</label>
-          <select [(ngModel)]="accountSettings.language">
-            <option>English</option>
-            <option>Arabic</option>
-            <option>French</option>
           </select>
         </div>
         <div class="field">

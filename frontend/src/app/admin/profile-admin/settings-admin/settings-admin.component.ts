@@ -20,14 +20,14 @@ export class SettingsComponent {
     birthday: '',
     gender: '',
     about: '',
-    languages: ''
+    languages: [] as string[],
+    newLanguage: ''
   };
 
   accountSettings = {
     email: '',
     password: '',
     visibility: 'Public',
-    language: 'English',
     theme: 'Light'
   };
 
@@ -48,6 +48,18 @@ export class SettingsComponent {
 
   removeSkill(index: number) {
     this.background.skills.splice(index, 1);
+  }
+
+  addLanguage() {
+    const lang = this.profileInfo.newLanguage.trim();
+    if (lang && !this.profileInfo.languages.includes(lang)) {
+      this.profileInfo.languages.push(lang);
+      this.profileInfo.newLanguage = '';
+    }
+  }
+
+  removeLanguage(index: number) {
+    this.profileInfo.languages.splice(index, 1);
   }
 
   discardChanges() {
