@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
 
 @Component({
   selector: 'app-account-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './account-admin.component.html',
   styleUrls: ['./account-admin.component.css']
 })
@@ -14,44 +15,53 @@ export class AccountProfileComponent implements OnInit {
   rating = 4.3;
 
   name = '';
+  email = '';
   role = '';
   location = '';
-  email = '';
   phone = '';
   address = '';
   birthday = '';
   gender = '';
-  education = '';
   languages: string[] = [];
   about = '';
   skills: string[] = [];
+  education = ''; // ✅ أضف هذا السطر لحل الخطأ
 
   constructor(private settingService: SettingService) {}
 
   ngOnInit(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const settingId = user?.user_id;
+    const userId = user?.user_id;
 
-    if (settingId) {
-      this.settingService.getSetting(settingId).subscribe({
+    this.name = user?.name || '';
+    this.email = user?.email || '';
+    this.role = this.mapRole(user?.role_id);
+
+    if (userId) {
+      this.settingService.getSetting(userId).subscribe({
         next: (data) => {
-          this.name = data.name;
-          this.role = user?.role || 'User';
-          this.location = data.country || 'Unknown';
-          this.email = data.email;
-          this.phone = data.phone;
-          this.address = data.address;
-          this.birthday = data.birthday;
-          this.gender = data.gender;
+          this.location = data.country || '';
+          this.phone = data.phone || '';
+          this.address = data.address || '';
+          this.birthday = data.birthday || '';
+          this.gender = data.gender || '';
           this.languages = data.languages || [];
-          this.about = data.about;
+          this.about = data.about || '';
           this.skills = data.skills || [];
+          this.education = data.education || ''; // ✅ جلب التعليم من الـ backend
         },
         error: (err) => {
           console.error('Failed to fetch setting:', err);
         }
       });
     }
+  }
+
+  mapRole(roleId: number): string {
+    if (roleId === 1) return 'Admin';
+    if (roleId === 2) return 'Artisan';
+    if (roleId === 3) return 'Job Owner';
+    return 'User';
   }
 
   get stars() {
