@@ -1,79 +1,75 @@
 <div class="settings-header">
-    <h2>Settings</h2>
-    <div class="tabs">
-      <span class="tab" [class.active]="activeTab === 'personal'" (click)="activeTab = 'personal'">Personal Info</span>
-      <span class="tab" [class.active]="activeTab === 'security'" (click)="activeTab = 'security'">Login & Security</span>
-      <span class="tab" [class.active]="activeTab === 'preferences'" (click)="activeTab = 'preferences'">Platform Preferences</span>
-    </div>
+  <h2>Settings</h2>
+  <div class="tabs">
+    <span class="tab" [class.active]="activeTab === 'personal'" (click)="activeTab = 'personal'">Personal Info</span>
+    <span class="tab" [class.active]="activeTab === 'security'" (click)="activeTab = 'security'">Login & Security</span>
+    <span class="tab" [class.active]="activeTab === 'preferences'" (click)="activeTab = 'preferences'">Background</span>
   </div>
-  
-  <div class="settings-section" *ngIf="activeTab === 'personal'">
-    <label>Name:</label>
-    <input [(ngModel)]="personalInfo.name" />
-  
-    <label>Country:</label>
-    <input [(ngModel)]="personalInfo.country" />
-  
-    <label>Timezone:</label>
-    <input [(ngModel)]="personalInfo.timezone" />
-  
-    <label>About:</label>
-    <textarea [(ngModel)]="personalInfo.about"></textarea>
-  
-    <label>Languages spoken:</label>
-    <input [(ngModel)]="personalInfo.languages" />
+</div>
+
+<div class="settings-section" *ngIf="activeTab === 'personal'">
+  <label>Name:</label>
+  <input [(ngModel)]="profileInfo.name" />
+
+  <label>Country:</label>
+  <input [(ngModel)]="profileInfo.country" />
+
+  <label>Phone:</label>
+  <input [(ngModel)]="profileInfo.phone" />
+
+  <label>Address:</label>
+  <input [(ngModel)]="profileInfo.address" />
+
+  <label>Birthday:</label>
+  <input type="date" [(ngModel)]="profileInfo.birthday" />
+
+  <label>Gender:</label>
+  <select [(ngModel)]="profileInfo.gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label>Languages:</label>
+  <div class="language-box">
+    <input [(ngModel)]="profileInfo.newLanguage" placeholder="Add Language" />
+    <button (click)="addLanguage()">Add</button>
   </div>
-  
-  <div class="settings-section" *ngIf="activeTab === 'security'">
-    <label>Email:</label>
-    <input [(ngModel)]="loginSecurity.email" />
-  
-    <label>Password:</label>
-    <input [(ngModel)]="loginSecurity.password" type="password" />
-  
-    <label>Two-Factor Auth:</label>
-    <input type="checkbox" [(ngModel)]="loginSecurity.twoFactor" />
-  
-    <label>Account Visibility:</label>
-    <select [(ngModel)]="loginSecurity.visibility">
-      <option>Public</option>
-      <option>Private</option>
-      <option>Only Me</option>
-    </select>
+  <ul>
+    <li *ngFor="let lang of profileInfo.languages; let i = index">
+      {{ lang }} <button (click)="removeLanguage(i)">x</button>
+    </li>
+  </ul>
+</div>
+
+<div class="settings-section" *ngIf="activeTab === 'security'">
+  <label>Email:</label>
+  <input [(ngModel)]="accountSettings.email" />
+
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="accountSettings.password" />
+</div>
+
+<div class="settings-section" *ngIf="activeTab === 'preferences'">
+  <label>Skills:</label>
+  <div class="skills-box">
+    <input [(ngModel)]="background.newSkill" placeholder="Add Skill" />
+    <button (click)="addSkill()">Add</button>
   </div>
-  
-  <div class="settings-section" *ngIf="activeTab === 'preferences'">
-    <label>Language:</label>
-    <select [(ngModel)]="platformPreferences.language">
-      <option>English</option>
-      <option>Arabic</option>
-      <option>French</option>
-    </select>
-  
-    <label>Theme:</label>
-    <select [(ngModel)]="platformPreferences.theme">
-      <option>Light</option>
-      <option>Dark</option>
-    </select>
-  
-    <label>Notifications:</label>
-    <input type="checkbox" [(ngModel)]="platformPreferences.notifications" />
-  
-    <label>Time Format:</label>
-    <select [(ngModel)]="platformPreferences.timeFormat">
-      <option>24h</option>
-      <option>AM/PM</option>
-    </select>
-  
-    <label>Content Layout:</label>
-    <select [(ngModel)]="platformPreferences.layout">
-      <option>Compact</option>
-      <option>Comfortable</option>
-    </select>
-  </div>
-  
-  <div class="footer-buttons">
-    <button class="discard" (click)="discardChanges()">Discard changes</button>
-    <button class="apply" (click)="applyChanges()">Apply changes</button>
-  </div>
-  
+  <ul>
+    <li *ngFor="let skill of background.skills; let i = index">
+      {{ skill }} <button (click)="removeSkill(i)">x</button>
+    </li>
+  </ul>
+
+  <label>Experience:</label>
+  <textarea [(ngModel)]="background.experience"></textarea>
+
+  <label>Education:</label>
+  <textarea [(ngModel)]="background.education"></textarea>
+</div>
+
+<div class="footer-buttons">
+  <button class="discard" (click)="discardChanges()">Discard changes</button>
+  <button class="apply" (click)="applyChanges()">Apply changes</button>
+</div>

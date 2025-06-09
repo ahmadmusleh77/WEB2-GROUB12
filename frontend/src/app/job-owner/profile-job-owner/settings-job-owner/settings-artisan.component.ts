@@ -1,46 +1,115 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { FormsModule } from '@angular/forms'; 
-import { Router } from '@angular/router'; 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { SettingService } from '../../../services/setting.service';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule], 
-  templateUrl: './settings-artisan.component.html',
-  styleUrls: ['./settings-artisan.component.css']
+  imports: [CommonModule, FormsModule],
+  templateUrl: './settings-job-owner.component.html',
+  styleUrls: ['./settings-job-owner.component.css']
 })
 export class SettingsComponent {
-  activeTab = 'personal';
+  activeTab = 'profile';
 
-  personalInfo = {
-    name: 'David',
-    country: 'Italy',
-    timezone: 'Europe/Rome',
-    about: "Hey, it's me :)",
-    languages: 'Italian'
+  constructor(private settingService: SettingService) {}
+
+  userId = JSON.parse(localStorage.getItem('user') || '{}')?.user_id || null;
+  userType = this.mapRole(JSON.parse(localStorage.getItem('user') || '{}')?.role_id);
+
+  profileInfo = {
+    name: '',
+    country: '',
+    phone: '',
+    address: '',
+    birthday: '',
+    gender: '',
+    about: '',
+    languages: [] as string[],
+    newLanguage: ''
   };
 
-  loginSecurity = {
-    email: 'jamal@example.com',
-    password: '********',
-    twoFactor: false,
-    visibility: 'Public'
+  accountSettings = {
+    email: '',
+    password: '',
+    visibility: 'Public',
+    theme: 'Light'
   };
 
-  platformPreferences = {
-    language: 'English',
-    theme: 'Light',
-    notifications: true,
-    timeFormat: '24h',
-    layout: 'Compact'
+  background = {
+    skills: [] as string[],
+    newSkill: '',
+    experience: '',
+    education: ''
   };
+
+  mapRole(roleId: number): 'admin' | 'artisan' | 'job_owner' {
+    if (roleId === 1) return 'admin';
+    if (roleId === 2) return 'artisan';
+    return 'job_owner';
+  }
+
+  addSkill() {
+    const skill = this.background.newSkill.trim();
+    if (skill && !this.background.skills.includes(skill)) {
+      this.background.skills.push(skill);
+      this.background.newSkill = '';
+    }
+  }
+
+  removeSkill(index: number) {
+    this.background.skills.splice(index, 1);
+  }
+
+  addLanguage() {
+    const lang = this.profileInfo.newLanguage.trim();
+    if (lang && !this.profileInfo.languages.includes(lang)) {
+      this.profileInfo.languages.push(lang);
+      this.profileInfo.newLanguage = '';
+    }
+  }
+
+  removeLanguage(index: number) {
+    this.profileInfo.languages.splice(index, 1);
+  }
 
   discardChanges() {
     alert('Changes discarded.');
   }
 
   applyChanges() {
-    alert('Changes applied!');
+    const payload = {
+      user_id: this.userId,
+      user_type: this.userType,
+      name: this.profileInfo.name,
+      country: this.profileInfo.country,
+      phone: this.profileInfo.phone,
+      address: this.profileInfo.address,
+      birthday: this.profileInfo.birthday,
+      gender: this.profileInfo.gender,
+      about: this.profileInfo.about,
+      languages: this.profileInfo.languages,
+      email: this.accountSettings.email,
+      password: this.accountSettings.password,
+      visibility: this.accountSettings.visibility,
+      theme: this.accountSettings.theme,
+      skills: this.background.skills,
+      experience: this.background.experience,
+      education: this.background.education,
+    };
+
+    console.log('Payload:', payload);
+
+    this.settingService.createSetting(payload).subscribe({
+      next: (res: any) => {
+        alert('Changes saved successfully!');
+        console.log('Saved data:', res);
+      },
+      error: (err: any) => {
+        console.error('Full error object:', err);
+        alert(err.error?.message || 'Failed to save changes.');
+      }
+    });
   }
 }
