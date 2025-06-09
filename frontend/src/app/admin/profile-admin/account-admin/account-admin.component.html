@@ -1,57 +1,55 @@
 <div class="profile-container">
-    <div class="profile-header">
-      <div class="profile-img">
-        <img [src]="photoUrl" alt="Profile Picture" />
-      </div>
-      <div class="profile-info">
-        <h2>{{ name }}</h2>
-        <p>{{ role }} | <span class="location">{{ location }}</span></p>
-        <div class="rating-container">
-          <div class="star-rating" title="{{ rating }} / 5">
-            <i *ngFor="let starClass of stars" [ngClass]="starClass"></i>
-          </div>
-          <span>{{ rating }} / 5</span>
+  <div class="profile-header">
+    <div class="profile-img">
+      <img [src]="photoUrl" alt="Profile Picture" />
+    </div>
+    <div class="profile-info">
+      <h2>{{ name }}</h2>
+      <p>{{ role }} | <span class="location">{{ location }}</span></p>
+      <div class="rating-container">
+        <div class="star-rating" title="{{ rating }} / 5">
+          <i *ngFor="let starClass of stars" [ngClass]="starClass"></i>
         </div>
-      </div>
-      <div class="chat-btn-container">
-        <button class="chat-btn" (click)="goToChat()" title="Start Chat">
-        
-           <img src="https://img.icons8.com/material-rounded/24/ffffff/chat--v1.png" alt="Chat Icon"/>
-        </button>
+        <span>{{ rating }} / 5</span>
       </div>
     </div>
-  
-    <div class="profile-details">
-      <div class="profile-section">
-        <h3>Contact Info</h3>
-        <p><strong>Email:</strong> {{ email }}</p>
-        <p><strong>Phone:</strong> {{ phone }}</p>
-        <p><strong>Address:</strong> {{ address }}</p>
-      </div>
-  
-      <div class="profile-section">
-        <h3>Personal Details</h3>
-        <p><strong>Birthday:</strong> {{ birthday }}</p>
-        <p><strong>Gender:</strong> {{ gender }}</p>
-        <p><strong>Languages:</strong> {{ languages }}</p>
-      </div>
-  
-      <div class="profile-section">
-        <h3>Skills</h3>
-        <ul class="skills-list">
-          <li *ngFor="let skill of skills">{{ skill }}</li>
-        </ul>
-      </div>
-  
-      <div class="profile-section">
-        <h3>Experience</h3>
-        <p>{{ about || 'User has not added experience details yet.' }}</p>
-      
-      </div>
-  
-      <div class="profile-section">
-        <h3>Education</h3>
-        <p>Coming soon...</p>
-      </div>
+    <div class="chat-btn-container">
+      <button class="chat-btn" (click)="goToChat()" title="Start Chat">
+        <img src="https://img.icons8.com/material-rounded/24/ffffff/chat--v1.png" alt="Chat Icon"/>
+      </button>
     </div>
   </div>
+
+  <div class="profile-details">
+    <div class="profile-section">
+      <h3>Contact Info</h3>
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>Phone:</strong> {{ phone }}</p>
+      <p><strong>Address:</strong> {{ address }}</p>
+    </div>
+
+    <div class="profile-section">
+      <h3>Personal Details</h3>
+      <p><strong>Birthday:</strong> {{ birthday }}</p>
+      <p><strong>Gender:</strong> {{ gender }}</p>
+      <p><strong>Languages:</strong> {{ languages.join(', ') }}</p>
+    </div>
+
+    <div class="profile-section">
+      <h3>Skills</h3>
+      <ul class="skills-list">
+        <li *ngFor="let skill of skills">{{ skill }}</li>
+      </ul>
+    </div>
+
+    <div class="profile-section">
+      <h3>Experience</h3>
+      <p>{{ about || 'User has not added experience details yet.' }}</p>
+    </div>
+
+    <div class="profile-section">
+      <h3>Education</h3>
+      <p>{{ education || 'User has not added education details yet.' }}</p>
+    </div>
+  </div>
+</div>
