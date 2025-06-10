@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
 import { UserService } from '../../../services/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-account-artisan',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './account-artisan.component.html',
   styleUrls: ['./account-artisan.component.css']
 })
 export class AccountProfileComponent implements OnInit {
   photoUrl = 'https://www.w3schools.com/howto/img_avatar.png';
-  rating = 4.3;
+  rating = 0;
 
   name = '';
   email = '';
@@ -50,6 +51,15 @@ export class AccountProfileComponent implements OnInit {
             this.education = data.education || '';
           },
           error: () => {}
+        });
+
+        this.settingService.getAverageRating(userId).subscribe({
+          next: (ratingData) => {
+            this.rating = ratingData.average_rating || 0;
+          },
+          error: () => {
+            this.rating = 0;
+          }
         });
       }
     });

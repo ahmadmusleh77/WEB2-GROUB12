@@ -48,4 +48,15 @@ export class SettingService {
       headers: this.getAuthHeaders()
     });
   }
+
+
+  getAverageRating(userId: number): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this.http.get(`http://127.0.0.1:8000/api/reviews/average/${userId}`, { headers });
+}
+
 }
