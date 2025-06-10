@@ -37,26 +37,11 @@ export class SettingService {
     });
   }
 
-  patchSetting(settingId: number, partialData: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${settingId}`, partialData, {
-      headers: this.getAuthHeaders()
-    });
-  }
-
-  deleteSetting(settingId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${settingId}`, {
-      headers: this.getAuthHeaders()
-    });
-  }
 
 
-  getAverageRating(userId: number): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
+
+  getAverageRating(userId: number) {
+  return this.http.get<{ average_rating: number }>(`http://127.0.0.1:8000/api/users/${userId}/average-rating`, {
+    headers: this.getAuthHeaders()
   });
-
-  return this.http.get(`http://127.0.0.1:8000/api/reviews/average/${userId}`, { headers });
-}
-
-}
+}}

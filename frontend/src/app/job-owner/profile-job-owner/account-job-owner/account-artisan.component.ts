@@ -1,76 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SettingService } from '../../../services/setting.service';
-import { UserService } from '../../../services/user.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-account-artisan',
+  selector: 'app-account-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './account-artisan.component.html',
   styleUrls: ['./account-artisan.component.css']
 })
-export class AccountProfileComponent implements OnInit {
+export class AccountProfileComponent {
+  name = 'Jamal Ilaiwi';
+
+  role = 'Supervisor';
+
+  location = 'Palestine';
+
+  email = 'jamal@gmail.com';
+
+  phone = '+970 599 000 000';
+
+  address = 'Ramallah, Palestine';
+
+  birthday = 'March 15, 1995';
+  gender = 'Male';
+
+  languages = 'Arabic, English';
+
+  about = 'Skilled electrician with hands-on experience in wiring, installations, and repairs.';
+  
+  skills = ['Precision', 'Reliability', 'Adaptability', 'Communication', 'Efficiency'];
   photoUrl = 'https://www.w3schools.com/howto/img_avatar.png';
-  rating = 0;
-
-  name = '';
-  email = '';
-  role = '';
-  location = '';
-  phone = '';
-  address = '';
-  birthday = '';
-  gender = '';
-  languages: string[] = [];
-  about = '';
-  skills: string[] = [];
-  education = '';
-
-  constructor(private settingService: SettingService, private userService: UserService) {}
-
-  ngOnInit(): void {
-    this.userService.user$.subscribe(user => {
-      this.name = user?.name || '';
-      this.email = user?.email || '';
-      this.role = this.mapRole(user?.role_id);
-      const userId = user?.user_id;
-      if (userId) {
-        this.settingService.getSetting(userId).subscribe({
-          next: (data) => {
-            this.location = data.country || '';
-            this.phone = data.phone || '';
-            this.address = data.address || '';
-            this.birthday = data.birthday || '';
-            this.gender = data.gender || '';
-            this.languages = data.languages || [];
-            this.about = data.about || '';
-            this.skills = data.skills || [];
-            this.education = data.education || '';
-          },
-          error: () => {}
-        });
-
-        this.settingService.getAverageRating(userId).subscribe({
-          next: (ratingData) => {
-            this.rating = ratingData.average_rating || 0;
-          },
-          error: () => {
-            this.rating = 0;
-          }
-        });
-      }
-    });
-  }
-
-  mapRole(roleId: number): string {
-    if (roleId === 1) return 'Admin';
-    if (roleId === 2) return 'Artisan';
-    if (roleId === 3) return 'Job Owner';
-    return 'User';
-  }
+  rating = 4.3;
 
   get stars() {
     const fullStars = Math.floor(this.rating);
@@ -83,7 +45,9 @@ export class AccountProfileComponent implements OnInit {
     return starArray;
   }
 
+
   goToChat() {
     console.log('Redirecting to chat...');
+   
   }
 }
