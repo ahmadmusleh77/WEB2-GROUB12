@@ -16,8 +16,7 @@ export class JobOwnersService {
     const token = localStorage.getItem('token');
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json'
+      Accept: 'application/json',
     });
   }
 
@@ -27,8 +26,9 @@ export class JobOwnersService {
     );
   }
 
-  createPost(postData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/newpost`, postData, { headers: this.getAuthHeaders() });
+  createPost(postData: FormData): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${this.apiUrl}/newpost`, postData, { headers });
   }
 
   deletePost(postId: number): Observable<any> {
