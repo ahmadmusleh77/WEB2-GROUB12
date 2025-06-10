@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user.service'; 
 
 @Component({
   selector: 'app-settings',
@@ -20,7 +20,12 @@ export class SettingsComponent implements OnInit {
   userId = this.user?.user_id || null;
   userType = this.mapRole(this.user?.role_id);
 
-  constructor(private settingService: SettingService) {}
+ constructor(
+    private settingService: SettingService,
+    private userService: UserService // ✅ أضف هذا السطر
+  ) {}
+  
+
 
   profileInfo = {
     name: '',
@@ -131,57 +136,66 @@ export class SettingsComponent implements OnInit {
   }
 
   applyChanges() {
-    const payload: any = {
-      user_id: this.userId,
-      user_type: this.userType,
-      name: this.profileInfo.name,
-      country: this.profileInfo.country,
-      phone: this.profileInfo.phone,
-      address: this.profileInfo.address,
-      birthday: this.profileInfo.birthday,
-      gender: this.profileInfo.gender,
-      about: this.profileInfo.about,
-      languages: this.profileInfo.languages,
-      email: this.accountSettings.email,
-      visibility: this.accountSettings.visibility,
-      theme: this.accountSettings.theme,
-      skills: this.background.skills,
-      experience: this.background.experience,
-      education: this.background.education
-    };
+  const payload: any = {
+    user_id: this.userId,
+    user_type: this.userType,
+    name: this.profileInfo.name,
+    country: this.profileInfo.country,
+    phone: this.profileInfo.phone,
+    address: this.profileInfo.address,
+    birthday: this.profileInfo.birthday,
+    gender: this.profileInfo.gender,
+    about: this.profileInfo.about,
+    languages: this.profileInfo.languages,
+    email: this.accountSettings.email,
+    visibility: this.accountSettings.visibility,
+    theme: this.accountSettings.theme,
+    skills: this.background.skills,
+    experience: this.background.experience,
+    education: this.background.education
+  };
 
-    if (this.accountSettings.password?.trim()) {
-      payload.password = this.accountSettings.password;
-    }
-
-    if (this.isEditing && this.settingId !== null) {
-      this.settingService.updateSetting(this.settingId, payload).subscribe({
-        next: () => {
-          alert('Changes updated successfully!');
-          const updatedUser = {
-            ...this.user,
-            name: this.profileInfo.name,
-            email: this.accountSettings.email
-          };
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-        },
-        error: (err) => {
-          console.error('Update error:', err);
-          alert(err.error?.message || 'Failed to update settings.');
-        }
-      });
-    } else {
-      this.settingService.createSetting(payload).subscribe({
-        next: (res: any) => {
-          alert('Changes saved successfully!');
-          this.settingId = res.id || res.setting_id;
-          this.isEditing = true;
-        },
-        error: (err) => {
-          console.error('Create error:', err);
-          alert(err.error?.message || 'Failed to save settings.');
-        }
-      });
-    }
+  if (this.accountSettings.password?.trim()) {
+    payload.password = this.accountSettings.password;
   }
+
+  if (this.isEditing && this.settingId !== null) {
+    this.settingService.updateSetting(this.settingId, payload).subscribe({
+      next: () => {
+        alert('Changes updated successfully!');
+
+        // ✅ تحديث الاسم والإيميل في الواجهة والتخزين المحلي
+        this.user.name = this.profileInfo.name;
+        this.user.email = this.accountSettings.email;
+        localStorage.setItem('user', JSON.stringify(this.user));
+
+        // ✅ إشعار بقية المكونات بالتحديث
+        this.userService.updateUser(this.user);
+      },
+      error: (err) => {
+        console.error('Update error:', err);
+        alert(err.error?.message || 'Failed to update settings.');
+      }
+    });
+  } else {
+    this.settingService.createSetting(payload).subscribe({
+      next: (res: any) => {
+        alert('Changes saved successfully!');
+        this.settingId = res.id || res.setting_id;
+        this.isEditing = true;
+
+        // ✅ في حالة الإضافة الجديدة، نفس التحديث
+        this.user.name = this.profileInfo.name;
+        this.user.email = this.accountSettings.email;
+        localStorage.setItem('user', JSON.stringify(this.user));
+        this.userService.updateUser(this.user);
+      },
+      error: (err) => {
+        console.error('Create error:', err);
+        alert(err.error?.message || 'Failed to save settings.');
+      }
+    });
+  }
+}
+
 }
