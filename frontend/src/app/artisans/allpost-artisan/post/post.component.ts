@@ -183,7 +183,7 @@ export class PostComponent implements OnInit {
       status: 'Pending'
     };
 
-    console.log('📤 bidData sent:', bidData);
+    console.log(' bidData sent:', bidData);
 
     this.artisansService.sendBid(bidData).subscribe({
       next: (res) => {
