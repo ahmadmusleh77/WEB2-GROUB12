@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'app-settings-artisan',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './settings-job-owner.component.html',
-  styleUrls: ['./settings-job-owner.component.css']
+  templateUrl: './settings-artisan.component.html',
+  styleUrls: ['./settings-artisan.component.css']
 })
-export class SettingsComponent {
+export class SettingsArtisanComponent implements OnInit {
   activeTab = 'profile';
+  settingId: number | null = null;
+  isEditing = false;
 
-  constructor(private settingService: SettingService) {}
+  user = JSON.parse(localStorage.getItem('user') || '{}');
+  userId = this.user?.user_id || null;
+  userType = this.mapRole(this.user?.role_id);
 
-  userId = JSON.parse(localStorage.getItem('user') || '{}')?.user_id || null;
-  userType = this.mapRole(JSON.parse(localStorage.getItem('user') || '{}')?.role_id);
+  constructor(private settingService: SettingService, private userService: UserService) {}
 
   profileInfo = {
     name: '',
@@ -43,6 +47,44 @@ export class SettingsComponent {
     experience: '',
     education: ''
   };
+
+  ngOnInit(): void {
+    if (this.userId) {
+      this.settingService.getSetting(this.userId).subscribe({
+        next: (data) => {
+          const id = data.id || data.setting_id || data.ID || null;
+          if (id) {
+            this.settingId = +id;
+            this.isEditing = true;
+          } else {
+            this.isEditing = false;
+            this.settingId = null;
+          }
+          this.profileInfo = {
+            name: data.name || '',
+            country: data.country || '',
+            phone: data.phone || '',
+            address: data.address || '',
+            birthday: data.birthday || '',
+            gender: data.gender || '',
+            about: data.about || '',
+            languages: data.languages || [],
+            newLanguage: ''
+          };
+          this.accountSettings.email = data.email || '';
+          this.accountSettings.visibility = data.visibility || 'Public';
+          this.accountSettings.theme = data.theme || 'Light';
+          this.background.skills = data.skills || [];
+          this.background.experience = data.experience || '';
+          this.background.education = data.education || '';
+        },
+        error: () => {
+          this.isEditing = false;
+          this.settingId = null;
+        }
+      });
+    }
+  }
 
   mapRole(roleId: number): 'admin' | 'artisan' | 'job_owner' {
     if (roleId === 1) return 'admin';
@@ -79,7 +121,7 @@ export class SettingsComponent {
   }
 
   applyChanges() {
-    const payload = {
+    const payload: any = {
       user_id: this.userId,
       user_type: this.userType,
       name: this.profileInfo.name,
@@ -91,25 +133,45 @@ export class SettingsComponent {
       about: this.profileInfo.about,
       languages: this.profileInfo.languages,
       email: this.accountSettings.email,
-      password: this.accountSettings.password,
       visibility: this.accountSettings.visibility,
       theme: this.accountSettings.theme,
       skills: this.background.skills,
       experience: this.background.experience,
-      education: this.background.education,
+      education: this.background.education
     };
 
-    console.log('Payload:', payload);
+    if (this.accountSettings.password?.trim()) {
+      payload.password = this.accountSettings.password;
+    }
 
-    this.settingService.createSetting(payload).subscribe({
-      next: (res: any) => {
-        alert('Changes saved successfully!');
-        console.log('Saved data:', res);
-      },
-      error: (err: any) => {
-        console.error('Full error object:', err);
-        alert(err.error?.message || 'Failed to save changes.');
-      }
-    });
+    if (this.isEditing && this.settingId !== null) {
+      this.settingService.updateSetting(this.settingId, payload).subscribe({
+        next: () => {
+          alert('Changes updated successfully!');
+          this.user.name = this.profileInfo.name;
+          this.user.email = this.accountSettings.email;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          this.userService.updateUser(this.user);
+        },
+        error: (err) => {
+          alert(err.error?.message || 'Failed to update settings.');
+        }
+      });
+    } else {
+      this.settingService.createSetting(payload).subscribe({
+        next: (res: any) => {
+          alert('Changes saved successfully!');
+          this.settingId = res.id || res.setting_id;
+          this.isEditing = true;
+          this.user.name = this.profileInfo.name;
+          this.user.email = this.accountSettings.email;
+          localStorage.setItem('user', JSON.stringify(this.user));
+          this.userService.updateUser(this.user);
+        },
+        error: (err) => {
+          alert(err.error?.message || 'Failed to save settings.');
+        }
+      });
+    }
   }
 }

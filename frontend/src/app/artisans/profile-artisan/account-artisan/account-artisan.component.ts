@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-account-profile',
+  selector: 'app-account-artisan',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './account-artisan.component.html',
@@ -27,34 +28,31 @@ export class AccountProfileComponent implements OnInit {
   skills: string[] = [];
   education = '';
 
-  constructor(private settingService: SettingService) {}
+  constructor(private settingService: SettingService, private userService: UserService) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const userId = user?.user_id;
-
-    this.name = user?.name || '';
-    this.email = user?.email || '';
-    this.role = this.mapRole(user?.role_id);
-
-    if (userId) {
-      this.settingService.getSetting(userId).subscribe({
-        next: (data) => {
-          this.location = data.country || '';
-          this.phone = data.phone || '';
-          this.address = data.address || '';
-          this.birthday = data.birthday || '';
-          this.gender = data.gender || '';
-          this.languages = data.languages || [];
-          this.about = data.about || '';
-          this.skills = data.skills || [];
-          this.education = data.education || '';
-        },
-        error: (err) => {
-          console.error('Failed to fetch setting:', err);
-        }
-      });
-    }
+    this.userService.user$.subscribe(user => {
+      this.name = user?.name || '';
+      this.email = user?.email || '';
+      this.role = this.mapRole(user?.role_id);
+      const userId = user?.user_id;
+      if (userId) {
+        this.settingService.getSetting(userId).subscribe({
+          next: (data) => {
+            this.location = data.country || '';
+            this.phone = data.phone || '';
+            this.address = data.address || '';
+            this.birthday = data.birthday || '';
+            this.gender = data.gender || '';
+            this.languages = data.languages || [];
+            this.about = data.about || '';
+            this.skills = data.skills || [];
+            this.education = data.education || '';
+          },
+          error: () => {}
+        });
+      }
+    });
   }
 
   mapRole(roleId: number): string {
