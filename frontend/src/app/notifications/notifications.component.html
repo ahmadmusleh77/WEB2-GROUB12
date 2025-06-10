@@ -1,18 +1,24 @@
-
 <div class="position-relative" style="cursor: pointer;">
-  <i class="fa-solid fa-bell header-icon" (click)="toggleNotifications()"></i>
+  <i class="fa-solid fa-bell header-icon fs-4 text-dark" (click)="toggleNotifications()"></i>
 
-  <span *ngIf="notifications.length > 0"
+  <span *ngIf="unreadCount > 0"
         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    {{ notifications.length }}
+    {{ unreadCount }}
   </span>
 
-  <div *ngIf="show" class="notification-dropdown">
-    <div *ngFor="let notification of notifications" class="p-2 border-bottom">
-      {{ notification.text }}
+  <div *ngIf="show" class="notification-dropdown shadow bg-white rounded mt-2 position-absolute end-0" style="width: 300px; z-index: 999;">
+    <div *ngFor="let notification of notifications"
+         class="p-2 border-bottom"
+         [class.bg-light]="!notification.is_read"
+         (click)="markAsRead(notification)">
+
+      <div class="fw-bold text-capitalize">{{ formatType(notification.type) }}</div>
+      <div>{{ notification.data?.message || 'No content' }}</div>
+      <small class="text-muted">{{ notification.created_at | date:'short' }}</small>
     </div>
+
     <div *ngIf="notifications.length === 0" class="p-2 text-muted text-center">
-      There are no notifications currently
+      There are no notifications currently.
     </div>
   </div>
 </div>
