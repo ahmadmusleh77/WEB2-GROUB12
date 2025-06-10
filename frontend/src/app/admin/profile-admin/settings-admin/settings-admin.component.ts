@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -157,6 +158,12 @@ export class SettingsComponent implements OnInit {
       this.settingService.updateSetting(this.settingId, payload).subscribe({
         next: () => {
           alert('Changes updated successfully!');
+          const updatedUser = {
+            ...this.user,
+            name: this.profileInfo.name,
+            email: this.accountSettings.email
+          };
+          localStorage.setItem('user', JSON.stringify(updatedUser));
         },
         error: (err) => {
           console.error('Update error:', err);

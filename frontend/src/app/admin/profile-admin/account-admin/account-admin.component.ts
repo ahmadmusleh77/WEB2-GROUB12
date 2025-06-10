@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SettingService } from '../../../services/setting.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-account-profile',
@@ -25,36 +26,39 @@ export class AccountProfileComponent implements OnInit {
   languages: string[] = [];
   about = '';
   skills: string[] = [];
-  education = ''; // ✅ أضف هذا السطر لحل الخطأ
+  education = '';
 
-  constructor(private settingService: SettingService) {}
+  constructor(
+    private settingService: SettingService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const userId = user?.user_id;
+    this.userService.user$.subscribe(user => {
+      this.name = user?.name || '';
+      this.email = user?.email || '';
+      this.role = this.mapRole(user?.role_id);
 
-    this.name = user?.name || '';
-    this.email = user?.email || '';
-    this.role = this.mapRole(user?.role_id);
-
-    if (userId) {
-      this.settingService.getSetting(userId).subscribe({
-        next: (data) => {
-          this.location = data.country || '';
-          this.phone = data.phone || '';
-          this.address = data.address || '';
-          this.birthday = data.birthday || '';
-          this.gender = data.gender || '';
-          this.languages = data.languages || [];
-          this.about = data.about || '';
-          this.skills = data.skills || [];
-          this.education = data.education || ''; // ✅ جلب التعليم من الـ backend
-        },
-        error: (err) => {
-          console.error('Failed to fetch setting:', err);
-        }
-      });
-    }
+      const userId = user?.user_id;
+      if (userId) {
+        this.settingService.getSetting(userId).subscribe({
+          next: (data) => {
+            this.location = data.country || '';
+            this.phone = data.phone || '';
+            this.address = data.address || '';
+            this.birthday = data.birthday || '';
+            this.gender = data.gender || '';
+            this.languages = data.languages || [];
+            this.about = data.about || '';
+            this.skills = data.skills || [];
+            this.education = data.education || '';
+          },
+          error: (err) => {
+            console.error('Failed to fetch setting:', err);
+          }
+        });
+      }
+    });
   }
 
   mapRole(roleId: number): string {
