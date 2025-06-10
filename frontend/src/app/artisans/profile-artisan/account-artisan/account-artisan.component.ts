@@ -1,38 +1,66 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SettingService } from '../../../services/setting.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-account-profile',
+  selector: 'app-account-artisan',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './account-artisan.component.html',
   styleUrls: ['./account-artisan.component.css']
 })
-export class AccountProfileComponent {
-  name = 'Jamal Ilaiwi';
-
-  role = 'Supervisor';
-
-  location = 'Palestine';
-
-  email = 'jamal@gmail.com';
-
-  phone = '+970 599 000 000';
-
-  address = 'Ramallah, Palestine';
-
-  birthday = 'March 15, 1995';
-  gender = 'Male';
-
-  languages = 'Arabic, English';
-
-  about = 'Skilled electrician with hands-on experience in wiring, installations, and repairs.';
-  
-  skills = ['Precision', 'Reliability', 'Adaptability', 'Communication', 'Efficiency'];
+export class AccountProfileComponent implements OnInit {
   photoUrl = 'https://www.w3schools.com/howto/img_avatar.png';
   rating = 4.3;
+
+  name = '';
+  email = '';
+  role = '';
+  location = '';
+  phone = '';
+  address = '';
+  birthday = '';
+  gender = '';
+  languages: string[] = [];
+  about = '';
+  skills: string[] = [];
+  education = '';
+
+  constructor(private settingService: SettingService, private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService.user$.subscribe(user => {
+      this.name = user?.name || '';
+      this.email = user?.email || '';
+      this.role = this.mapRole(user?.role_id);
+      const userId = user?.user_id;
+      if (userId) {
+        this.settingService.getSetting(userId).subscribe({
+          next: (data) => {
+            this.location = data.country || '';
+            this.phone = data.phone || '';
+            this.address = data.address || '';
+            this.birthday = data.birthday || '';
+            this.gender = data.gender || '';
+            this.languages = data.languages || [];
+            this.about = data.about || '';
+            this.skills = data.skills || [];
+            this.education = data.education || '';
+          },
+          error: () => {}
+        });
+      }
+    });
+  }
+
+  mapRole(roleId: number): string {
+    if (roleId === 1) return 'Admin';
+    if (roleId === 2) return 'Artisan';
+    if (roleId === 3) return 'Job Owner';
+    return 'User';
+  }
 
   get stars() {
     const fullStars = Math.floor(this.rating);
@@ -45,9 +73,7 @@ export class AccountProfileComponent {
     return starArray;
   }
 
-
   goToChat() {
     console.log('Redirecting to chat...');
-   
   }
 }

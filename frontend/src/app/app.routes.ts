@@ -14,7 +14,9 @@ import { ChatComponent } from './artisans/chat-artisan/chat.component';
 import { AllPostComponent } from './artisans/allpost-artisan/all-post.component';
 import { OfferArtisanComponent } from './artisans/offer-artisan/offer-artisan.component';
 import { AccountProfileComponent as ArtisanAccountProfileComponent } from './artisans/profile-artisan/account-artisan/account-artisan.component';
-import { SettingsComponent as ArtisanSettingsComponent } from './artisans/profile-artisan/settings-artisan/settings-artisan.component';
+
+import { SettingsArtisanComponent as ArtisanSettingsComponent } from './artisans/profile-artisan/settings-artisan/settings-artisan.component';
+
 import { AdminComponent } from './admin/admin.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { UserAdminComponent } from './admin/user-admin/user-admin.component';

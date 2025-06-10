@@ -14,7 +14,8 @@ export class SettingService {
     const token = localStorage.getItem('token');
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      Accept: 'application/json'
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
     });
   }
 
@@ -24,15 +25,38 @@ export class SettingService {
     });
   }
 
-  getSetting(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`, {
+  getSetting(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`, {
       headers: this.getAuthHeaders()
     });
   }
 
-  updateSetting(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, data, {
+  updateSetting(settingId: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${settingId}`, data, {
       headers: this.getAuthHeaders()
     });
   }
+
+  patchSetting(settingId: number, partialData: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${settingId}`, partialData, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  deleteSetting(settingId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${settingId}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+
+  getAverageRating(userId: number): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this.http.get(`http://127.0.0.1:8000/api/reviews/average/${userId}`, { headers });
+}
+
 }
